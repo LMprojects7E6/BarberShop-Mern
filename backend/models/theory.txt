@@ -1,0 +1,4 @@
+En este archivo lo que haremos sera definir nuestros esquemas/modelos de nuestros documentos dentro de las 
+colecciones para estandarizar las estructura de datos en este caso
+normalmente esto se realizara con mongoose.
+
