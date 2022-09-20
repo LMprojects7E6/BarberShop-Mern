@@ -1,6 +1,10 @@
 import api from "./api";
 
-export const signIn = (formData) => api.post("/signIn", formData);
-export const signUp = (formData) => api.post("/signup", formData);
-export const forgotPassword = (formData) => api.post("/forgot", formData);
-export const resetPassword = (formData) => api.post("/reset", formData);
+export const signIn = async (formData) => await api.post("/signIn", formData);
+export const signUp = async (formData) => await api.post("/signup", formData);
+export const forgotPassword = async (formData) => {
+  await api.post("/forgot", formData);
+};
+export const resetPassword = async (formData) => {
+  await api.post("/reset", formData);
+};
