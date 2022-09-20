@@ -2,7 +2,7 @@
 const Users = require("../models/user-model");
 const bcrypt = require("bcrypt");
 
-const login = (req, res, next) => {};
+// const login = (req, res, next) => {};
 //!REGISTER FUNCTION
 const register = async (req, res, next) => {
   try {
@@ -33,6 +33,6 @@ const register = async (req, res, next) => {
 };
 
 module.exports = {
-  login: login,
+  // login: login,
   register: register,
 };
