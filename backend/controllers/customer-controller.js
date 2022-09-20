@@ -1,7 +1,7 @@
 //CONNECTION TO DATABASE MODELS
 const dbModel = require("../models");
 
-async function getCostumers(req, res, next) {
+async function getCustomers(req, res, next) {
   try {
     const employees = await dbModel.User.find({ role: "customer" })
       .lean()
