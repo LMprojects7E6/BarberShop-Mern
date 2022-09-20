@@ -1,11 +1,11 @@
-//CONNECTION TO DATABASE
-const db = '';
+//CONNECTION TO DATABASE MODELS
+const dbModel = require("../models");
 
-async function signIn(req, res, next){
+const signIn = async (req, res, next) => {
 
 }
 
-async function signUp(req, res, next){
+const signUp = async (req, res, next) => {
 
 }
 

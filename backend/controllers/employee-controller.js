@@ -3,7 +3,7 @@ const dbModel = require("../models");
 
 // CRUD controllers
 
-async function getEmployees(req, res, next){
+const  getEmployees = async (req, res, next) => {
     try {
         const employees = await dbModel.User.find({role:"employee"}).lean().exec();
 
@@ -13,19 +13,46 @@ async function getEmployees(req, res, next){
     }
 }
 
-async function getEmployeesById(req, res, next){
+const getEmployeesById = async (req, res, next) => {
+    const {id} = req.params
+
+    try {
+        const employee = await dbModel.User.findOne({ _id: id }).lean().exec();
+
+        res.status(200).send({ data: employee._id});
+    } catch (error) {
+        next(error);
+    }
 
 }
 
-async function createEmployee(req, res, next){
+const createEmployee = async (req, res, next) => {
+    const {first_name, last_name, email, password} = req.body;
+
+    try {
+        const newEmployee = dbModel.User.create({
+            first_name: first_name,
+            last_name: last_name,
+            email: email,
+            password: password,
+            role: "employee"
+        });
+        
+        
+    } catch (error) {
+        
+    }
+
+
+
 
 }
 
-async function updateEmployee(req, res, next){
+const updateEmployee = async (req, res, next) => {
 
 }
 
-async function deleteEmployee(req, res, next){
+const deleteEmployee = async (req, res, next) => {
 
 }
 

@@ -1,19 +1,19 @@
-//CONECTION TO THE DATABASE
-const db = '';
+//CONNECTION TO DATABASE MODELS
+const dbModel = require("../models");
 
-async function getAppointmentsByEmployee(req, res, next){
-
-}
-
-async function getAppointmentsByCostumer(req, res, next){
+const getAppointmentsByEmployee = async (req, res, next) => {
 
 }
 
-async function createAppointment(req, res, next){
+const getAppointmentsByCostumer = (req, res, next) => {
 
 }
 
-async function deleteAppointment(req, res, next){
+const createAppointment = (req, res, next) => {
+
+}
+
+const deleteAppointment= async (req, res, next) => {
 
 }
 
