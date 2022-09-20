@@ -1,8 +1,16 @@
-//CONNECTION TO DATABASE
-const db = '';
+//CONNECTION TO DATABASE MODELS
+const dbModel = require("../models");
+
+// CRUD controllers
 
 async function getEmployees(req, res, next){
+    try {
+        const employees = await dbModel.User.find({role:"employee"}).lean().exec();
 
+        res.status(200).send({ data : employees })
+    } catch (error) {
+        next(error);
+    }
 }
 
 async function getEmployeesById(req, res, next){
