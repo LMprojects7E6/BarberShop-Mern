@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 const AppointmentShema = new mongoose.Schema({
   precio: { type: Number, required: true, trim: true },
-  startData: { type: Data, required: true },
-  endData: { type: Data, required: true },
+  data: { type: Data, required: true },
   employee: {
     type: mongoose.SchemaTypes.ObjectId,
     required: true,
