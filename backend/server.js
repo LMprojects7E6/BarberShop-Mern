@@ -16,6 +16,23 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cors());
 
+//!ROUTES
+/***************/
+//!REGISTER
+const registerRoutes = require("./routes/register-routes");
+app.use("/register", registerRoutes);
+
+// app.get("/login", async (req, res, next) => {
+//   const users = await Users.find({}).limit(2);
+//   res.send(users);
+// });
+
+// app.get("/logout", (req, res, next) => {
+//   res.send("Hello logout");
+// });
+
+//!END TEST
+
 //!PORT TO LISTEN
 app.listen(process.env.PORT, () => {
   console.log(`App express is running in port: ${process.env.PORT}`);
