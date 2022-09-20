@@ -1,16 +1,14 @@
 //CONNECTION TO DATABASE
 const db = "";
 
-async function getCostumers(req, res, next) {
-  console.log("holaaaaaa");
-}
+async function getCustomers(req, res, next) {}
 
-async function getCostumersById(req, res, next) {}
+async function getCustomersById(req, res, next) {}
 
-async function deleteCostumer(req, res, next) {}
+async function deleteCustomer(req, res, next) {}
 
 module.exports = {
-  getCostumers: getCostumers,
-  getCostumersById: getCostumersById,
-  deleteCostumer: deleteCostumer,
+  getCustomers: getCustomers,
+  getCustomersById: getCustomersById,
+  deleteCustomer: deleteCustomer,
 };

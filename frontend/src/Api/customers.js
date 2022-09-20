@@ -1,14 +1,14 @@
 import api from "./api";
 
-export const getCostumers = async () => {
-  const costumers = await api.get("/costumers");
-  return costumers.data;
+export const getCustomers = async () => {
+  const customers = await api.get("/customers");
+  return customers.data;
 };
-export const getCostumersById = async (id) => {
-  const costumers = await api.get(`/costumers/${id}`);
-  return costumers.data;
+export const getCustomersById = async (id) => {
+  const customers = await api.get(`/customers/${id}`);
+  return customers.data;
 };
 
-export const deleteCostumers = async (id) => {
-  await api.delete(`/costumers/${id}`);
+export const deleteCustomers = async (id) => {
+  await api.delete(`/customers/${id}`);
 };
