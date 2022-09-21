@@ -41,8 +41,12 @@ app.use("/login", loginRoutes);
 
 //!LOGOUT ROUTE
 const logoutRoutes = require("./routes/logout-routes");
+const { validateToken } = require("./auth/auth-jwt");
 app.use("/logout", logoutRoutes);
 
+app.get("/dashboard", validateToken, (req, res, next) => {
+  res.send("YOU CAN ACCESS THIS AREA , INSERT ROLE " + req.role);
+});
 //!PORT TO LISTEN
 app.listen(process.env.PORT, () => {
   console.log(`App express is running in port: ${process.env.PORT}`);

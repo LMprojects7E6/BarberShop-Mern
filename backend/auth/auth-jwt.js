@@ -4,9 +4,8 @@ const { verify, sign } = require("jsonwebtoken");
 const createToken = (user) => {
   const accessToken = sign(
     {
-      email: user.email,
-      first_name: user.first_name,
-      last_name: user.last_name,
+      id: user.id,
+      role: user.role,
     },
     process.env.SECRET_KEY,
     { expiresIn: "15s" }
@@ -27,6 +26,8 @@ const validateToken = (req, res, next) => {
     //2.Check if the token didnt expired
     const validateToken = verify(accessToken, process.env.SECRET_KEY);
     if (validateToken) {
+      //Get the role in JWT and add to the req
+      req.role = validateToken.role;
       //Create a property to the request
       req.authenticated = true;
       //Continue with rest of the code after midleware aplies

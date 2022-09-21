@@ -11,12 +11,9 @@ const loginController = async (req, res, next) => {
     const user = await Users.findOne({ email: email });
     if (user) {
       const dbPassword = user.password;
-      console.log(dbPassword);
-      console.log(password);
       //Check if the client password and the encrypted password from DB match
       await bcrypt.compare(password, dbPassword).then((match) => {
         if (!match) {
-          console.log(match);
           res.status(400).send("Wrong password and username please try again ");
         } else {
           //If password is correct
