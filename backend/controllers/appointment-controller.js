@@ -5,9 +5,7 @@ const getAppointmentsByEmployee = async (req, res, next) => {};
 
 async function getAppointmentsByCostumer(req, res, next) {}
 
-const getAppointmentsByCostumer = (req, res, next) => {};
-
-async function createAppointment(req, res, next) {}
+const getAppointmentsByRole = (req, res, next) => {};
 
 const createAppointment = (req, res, next) => {};
 
