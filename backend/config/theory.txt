@@ -1,2 +1,0 @@
--Aqui podremos realizar toda la configuracion de nuestro proyecto 
-como por ejemplo poner la configuración de nuestra base de datos ha mongodb
