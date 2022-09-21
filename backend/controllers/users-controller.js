@@ -1,7 +1,7 @@
 //CONNECTION TO DATABASE MODELS
 const dbModel = require("../models");
 
-const getUsers = async (req, res) => {
+const getAllUsers = async (req, res) => {
   try {
     const user = await dbModel.User.find({}).lean().exec();
 
@@ -11,10 +11,14 @@ const getUsers = async (req, res) => {
   }
 };
 
-const getUsersById = async (req, res) => {
-  const { id } = req.params;
+const getUsers = async (req, res) => {
+  const values = req.query;
+  console.log(values);
+
   try {
-    const user = await dbModel.User.findOne({ _id: id }).lean().exec();
+    values.role
+      ? (user = await dbModel.User.find({ role: values.role }).lean().exec())
+      : (user = await dbModel.User.find({ _id: values.id }).lean().exec());
 
     res.status(200).send(user);
   } catch (error) {
@@ -33,7 +37,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-const createUser = async (req, res,) => {
+const createUser = async (req, res) => {
   const { first_name, last_name, email, password, role } = req.body;
 
   try {
@@ -79,8 +83,10 @@ const updateUser = async (req, res) => {
 };
 
 module.exports = {
+  getAllUsers: getAllUsers,
   getUsers: getUsers,
-  getUsersById: getUsersById,
+  // getUsersById: getUsersById,
+  // getUsersByRole: getUsersByRole,
   deleteUser: deleteUser,
   createUser: createUser,
   updateUser: updateUser,
