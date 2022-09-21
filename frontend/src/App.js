@@ -1,3 +1,5 @@
+import { getCostumers } from "./Api/customers";
+
 function App() {
   return (
     <div className="h-screen bg-fuchsia-800 flex justify-center items-center">

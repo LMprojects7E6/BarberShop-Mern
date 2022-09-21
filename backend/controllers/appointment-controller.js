@@ -1,25 +1,20 @@
 //CONECTION TO THE DATABASE
-const db = '';
+const db = "";
 
-async function getAppointmentsByEmployee(req, res, next){
+async function getAppointmentsByEmployee(req, res, next) {}
 
-}
+async function getAppointmentsByCostumer(req, res, next) {}
 
-async function getAppointmentsByCostumer(req, res, next){
+async function getAppointmentsByRole(req, res, next) {}
 
-}
+async function createAppointment(req, res, next) {}
 
-async function createAppointment(req, res, next){
-
-}
-
-async function deleteAppointment(req, res, next){
-
-}
+async function deleteAppointment(req, res, next) {}
 
 module.exports = {
-    getAppointmentsByEmployee : getAppointmentsByEmployee,
-    getAppointmentsByCostumer : getAppointmentsByCostumer,
-    createAppointment : createAppointment,
-    deleteAppointment : deleteAppointment
-}
+  getAppointmentsByEmployee: getAppointmentsByEmployee,
+  getAppointmentsByCostumer: getAppointmentsByCostumer,
+  createAppointment: createAppointment,
+  deleteAppointment: deleteAppointment,
+  getAppointmentsByRole: getAppointmentsByRole,
+};

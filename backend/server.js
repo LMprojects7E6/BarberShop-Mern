@@ -4,6 +4,7 @@ const app = express();
 const helmet = require("helmet");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+
 //!ADD ENVIRONMENT VARIABLES
 require("dotenv").config();
 
@@ -21,7 +22,15 @@ const { validateToken } = require("./auth/auth-jwt");
 
 //!ROUTES
 /***************/
-
+//TODO FIX ROUTES
+// const userRoutes = require("./routes/users-routes");
+// const employeesRoutes = require("./routes/employees-routes");
+// const customersRoutes = require("./routes/customers-routes");
+// const appointmentRoutes = require("./routes/appointment-routes");
+app.use("/users", userRoutes);
+app.use("/employees", employeesRoutes);
+app.use("/customers", customersRoutes);
+app.use("/appointment", appointmentRoutes);
 //!REGISTER ROUTE
 const registerRoutes = require("./routes/register-routes");
 app.use("/register", registerRoutes);
