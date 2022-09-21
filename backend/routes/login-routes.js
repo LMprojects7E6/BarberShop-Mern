@@ -1,8 +1,8 @@
 //!IMPORT DEPENDENCIES
 const express = require("express");
 const router = express.Router();
-const { registerController } = require("../controllers/users-controller");
+const { loginController } = require("../controllers/users-controller");
 //!POST REGISTER ROUTE
-router.post("/", registerController);
+router.post("/", loginController);
 
 module.exports = router;

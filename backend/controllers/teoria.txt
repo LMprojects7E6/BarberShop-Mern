@@ -1,7 +1,0 @@
-Digamos que en el patron de diseño MVC Modelo vista controlador aqui pondremos
-toda la logica relacionada a controlar la aplicacion por ejemplo :
-
--segun lo tipos de datos accederemos a una ruta en concreto
--Segun la autentificacion iremos a una pagina o a otra
-
-Digamos que este archivo sera el encargado de dirigir las comandas.
