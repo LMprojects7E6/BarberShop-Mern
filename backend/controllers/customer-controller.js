@@ -1,7 +1,7 @@
 //CONNECTION TO DATABASE MODELS
 const dbModel = require("../models");
 
-const getCostumers = async (req, res, next) => {
+const getCustomers = async (req, res, next) => {
     try {
         const employees = await dbModel.User.find({role:"customer"}).lean().exec();
 
@@ -11,16 +11,16 @@ const getCostumers = async (req, res, next) => {
     }
 }
 
-const getCostumersById = (req, res, next) => {
+const getCustomersById = (req, res, next) => {
 
 }
 
-const deleteCostumer = (req, res, next) => {
+const deleteCustomer = (req, res, next) => {
     
 }
 
 module.exports = {
-    getCostumers : getCostumers,
-    getCostumersById : getCostumersById,
-    deleteCostumer : deleteCostumer
+    getCustomers : getCustomers,
+    getCustomersById : getCustomersById,
+    deleteCustomer : deleteCustomer
 }
