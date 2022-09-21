@@ -30,14 +30,15 @@ const getUsersByEmail = async (req, res) => {
 
 const getUsersById = async (req, res) => {
   const { id } = req.query;
-  console.log(req.query);
-  //   try {
-  //     const user = await dbModel.User.findOne({ _id: id }).lean().exec();
+  console.log(id);
 
-  //     res.status(200).send(user);
-  //   } catch (error) {
-  //     res.status(404).send({ message: error.message });
-  //   }
+  try {
+    const user = await dbModel.User.findOne({ _id: id });
+    console.log(user);
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(404).send({ message: error.message });
+  }
 };
 
 const deleteUser = async (req, res) => {
@@ -67,6 +68,7 @@ const createUser = async (req, res, next) => {
     res.status(404).send({ message: error.message });
   }
 };
+
 const updateUser = async (req, res, next) => {
   const { id } = req.params;
   const { first_name, last_name, email, password } = req.body;
