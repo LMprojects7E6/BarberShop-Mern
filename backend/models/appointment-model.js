@@ -1,20 +1,20 @@
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-// const AppointmentShema = new mongoose.Schema({
-//   precio: { type: Number, required: true, trim: true },
-//   data: { type: Data, required: true },
-//   employee: {
-//     type: mongoose.SchemaTypes.ObjectId,
-//     required: true,
-//     ref: "user",
-//   },
-//   customer: {
-//     type: mongoose.SchemaTypes.ObjectId,
-//     required: true,
-//     ref: "user",
-//   },
-// });
+const AppointmentShema = new mongoose.Schema({
+  price: { type: Number, required: true, trim: true },
+  date: { type: Date, required: true },
+  employee: {
+    type: mongoose.SchemaTypes.ObjectId,
+    required: true,
+    ref: "users",
+  },
+  customer: {
+    type: mongoose.SchemaTypes.ObjectId,
+    required: true,
+    ref: "users",
+  },
+});
 
-// const AppointmentModel = new mongoose.model("appointment", AppointmentShema);
+const AppointmentModel = mongoose.model("appointment", AppointmentShema);
 
-// module.exports = AppointmentModel;
+module.exports = AppointmentModel;

@@ -12,7 +12,7 @@ require("dotenv").config();
 //!ADD ROUTES
 // const sessionRoutes = require("./routes/session-routes");
 const usersRoutes = require("./routes/users-routes");
-// const appointmentRoutes = require("./routes/appointment-routes");
+const appointmentRoutes = require("./routes/appointment-routes");
 
 //!CONNECT TO SERVER MONGO
 const connect = require("./config/dbConfig");
@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cors());
 
-app.get("/test", async (req, res, next) => {
+app.get("/test", async (req, res, next) => { 
   try {
     const employees = await employeeModel
       .find({ role: "employee" })
@@ -39,9 +39,9 @@ app.get("/test", async (req, res, next) => {
 });
 
 app.use("/users", usersRoutes);
+app.use("/appointments", appointmentRoutes);
 // app.use("/employees", employeesRoutes);
 // app.use("/customers", customersRoutes);
-// app.use("/appointment", appointmentRoutes);
 
 //!PORT TO LISTEN
 app.listen(process.env.PORT, () => {

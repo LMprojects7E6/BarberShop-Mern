@@ -1,12 +1,12 @@
 //CONNECTION TO DATABASE MODELS
 const dbModel = require("../models");
 
+const test = async(req ,res,next) => {
+console.log(req.query);
+}
 const getUsersByRole = async (req, res) => {
-  //   console.log(req.params);
-  //   const { role } = req.params;
-  res.status(200).send(req.params);
-  return;
-  console.log(role);
+    const { role } = req.params;
+    console.log(req.params);
   try {
     const employees = await dbModel.User.find({ role: role }).lean().exec();
 
@@ -30,14 +30,14 @@ const getUsersByEmail = async (req, res) => {
 
 const getUsersById = async (req, res) => {
   const { id } = req.query;
-  console.log(req.query);
-  //   try {
-  //     const user = await dbModel.User.findOne({ _id: id }).lean().exec();
+    try {
+      // const user = await dbModel.User.findOne({ "_id": id }).lean().exec();
+      const users = await dbModel.User.find({});
 
-  //     res.status(200).send(user);
-  //   } catch (error) {
-  //     res.status(404).send({ message: error.message });
-  //   }
+      res.status(200).send(users);
+    } catch (error) {
+      res.status(404).send({ message: error.message });
+    }
 };
 
 const deleteUser = async (req, res) => {
@@ -102,4 +102,5 @@ module.exports = {
   deleteUser: deleteUser,
   createUser: createUser,
   updateUser: updateUser,
+  test:test
 };
