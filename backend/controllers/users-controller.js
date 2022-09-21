@@ -2,7 +2,10 @@
 const dbModel = require("../models");
 
 const getUsersByRole = async (req, res) => {
-  const { role } = req.params;
+  //   console.log(req.params);
+  //   const { role } = req.params;
+  res.status(200).send(req.params);
+  return;
   console.log(role);
   try {
     const employees = await dbModel.User.find({ role: role }).lean().exec();
@@ -26,15 +29,15 @@ const getUsersByEmail = async (req, res) => {
 };
 
 const getUsersById = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.query;
+  console.log(req.query);
+  //   try {
+  //     const user = await dbModel.User.findOne({ _id: id }).lean().exec();
 
-  try {
-    const user = await dbModel.User.findOne({ _id: id }).lean().exec();
-
-    res.status(200).send(user);
-  } catch (error) {
-    res.status(404).send({ message: error.message });
-  }
+  //     res.status(200).send(user);
+  //   } catch (error) {
+  //     res.status(404).send({ message: error.message });
+  //   }
 };
 
 const deleteUser = async (req, res) => {
