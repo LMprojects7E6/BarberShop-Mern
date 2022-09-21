@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cors());
 
-app.get("/test", async (req, res, next) => { 
+app.get("/test", async (req, res, next) => {
   try {
     const employees = await employeeModel
       .find({ role: "employee" })
@@ -40,8 +40,6 @@ app.get("/test", async (req, res, next) => {
 
 app.use("/users", usersRoutes);
 app.use("/appointments", appointmentRoutes);
-// app.use("/employees", employeesRoutes);
-// app.use("/customers", customersRoutes);
 
 //!PORT TO LISTEN
 app.listen(process.env.PORT, () => {

@@ -1,26 +1,9 @@
 //CONNECTION TO DATABASE MODELS
 const dbModel = require("../models");
 
-const test = async(req ,res,next) => {
-console.log(req.query);
-}
-const getUsersByRole = async (req, res) => {
-    const { role } = req.params;
-    console.log(req.params);
+const getUsers = async (req, res) => {
   try {
-    const employees = await dbModel.User.find({ role: role }).lean().exec();
-
-    res.status(200).send({ data: employees });
-  } catch (error) {
-    res.status(404).send({ message: error.message });
-  }
-};
-
-const getUsersByEmail = async (req, res) => {
-  const { email } = req.params;
-
-  try {
-    const user = await dbModel.User.find({ email: email }).lean().exec();
+    const user = await dbModel.User.find({}).lean().exec();
 
     res.status(200).send(user);
   } catch (error) {
@@ -29,15 +12,14 @@ const getUsersByEmail = async (req, res) => {
 };
 
 const getUsersById = async (req, res) => {
-  const { id } = req.query;
-    try {
-      // const user = await dbModel.User.findOne({ "_id": id }).lean().exec();
-      const users = await dbModel.User.find({});
+  const { id } = req.params;
+  try {
+    const user = await dbModel.User.findOne({ _id: id }).lean().exec();
 
-      res.status(200).send(users);
-    } catch (error) {
-      res.status(404).send({ message: error.message });
-    }
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(404).send({ message: error.message });
+  }
 };
 
 const deleteUser = async (req, res) => {
@@ -51,7 +33,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-const createUser = async (req, res, next) => {
+const createUser = async (req, res,) => {
   const { first_name, last_name, email, password, role } = req.body;
 
   try {
@@ -67,7 +49,8 @@ const createUser = async (req, res, next) => {
     res.status(404).send({ message: error.message });
   }
 };
-const updateUser = async (req, res, next) => {
+
+const updateUser = async (req, res) => {
   const { id } = req.params;
   const { first_name, last_name, email, password } = req.body;
 
@@ -89,18 +72,16 @@ const updateUser = async (req, res, next) => {
       }
     );
 
-    res.status(200).send(updateUser);
+    res.status(200).send(updatedUser);
   } catch (error) {
     res.status(404).send({ message: error.message });
   }
 };
 
 module.exports = {
-  getUsersByRole: getUsersByRole,
+  getUsers: getUsers,
   getUsersById: getUsersById,
-  getUsersByEmail: getUsersByEmail,
   deleteUser: deleteUser,
   createUser: createUser,
   updateUser: updateUser,
-  test:test
 };
