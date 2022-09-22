@@ -3,7 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
+axios.defaults.withCredentials = true;
 const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
@@ -23,9 +23,7 @@ const Login = () => {
         }
       })
       //TODO: handle error here
-      .catch((err) => {
-        toast.error(err.response.data.errorMsg);
-      });
+      .catch((err) => toast.error(err.response.data.errorMsg));
   };
   return (
     <div>

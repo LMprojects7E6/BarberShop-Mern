@@ -52,9 +52,15 @@ const loginController = async (req, res, next) => {
 const registerController = async (req, res, next) => {
   try {
     //Get body params
-    const { first_name, last_name, email, password, role } = req.body;
+    const {
+      first_name,
+      last_name,
+      email,
+      password,
+      role = "customer",
+    } = req.body;
     if (password.length < 5) {
-      return res.status(400).send({ message: "Password is to short" });
+      return res.status(400).send({ errorMsg: "Password is to short" });
     } else {
       //Encrypt data
       const hash = await bcrypt.hash(password, 10);
@@ -69,12 +75,30 @@ const registerController = async (req, res, next) => {
 
       //Save user and send resp
       await user.save();
-      return res.status(200).send(`Created ${user}`);
+      //If password is correct
+      //Create JWT token
+      const accesToken = createToken(user);
+      //Store JWT in coockies
+      res.cookie("access-token", accesToken, {
+        //TODO: check secure depending on environment
+        //Petition with http or https only
+        secure: false,
+        //Cannot get coockies from js script
+        httpOnly: true,
+        //If coockie should be accesible only in the same domain
+        sameSite: false,
+        //Expiration
+        maxAge: 86400000,
+      });
+      //Send response
+      //TODO role response?
+      return res.status(200).send({ userRegistered: true });
     }
   } catch (error) {
-    return res
-      .status(400)
-      .send({ message: `Error while creating the user : ${error}` });
+    return res.status(400).send({
+      errorMsg: `Email is already in use`,
+      err: error,
+    });
   }
 };
 

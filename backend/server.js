@@ -17,7 +17,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 const corsOptions = {
+  //Allow to set coockies in header
   credentials: true,
+  //allow petitions from this domain when deploying maybe change to actual domain name
   origin: "http://localhost:3000",
 };
 //Cors middleware
