@@ -2,9 +2,15 @@
 const dbModel = require("../models");
 
 const getAppointments = async (req, res) => {
+  const { id } = req.params;
+
   try {
-    const appointmentList = await dbModel.Appointment.find({}).lean().exec();
-    console.log(appointmentList);
+    const appointmentList = await dbModel.User.find({ _id: id })
+      .populate("appointments")
+      .select({ appointments$date: 1 })
+      .lean()
+      .exec();
+
     res.status(200).send(appointmentList);
   } catch (error) {
     res.status(404).send({ message: error.message });
@@ -14,12 +20,14 @@ const getAppointments = async (req, res) => {
 const getAppointmentsById = async (req, res) => {
   const key = Object.keys(req.query);
   const value = Object.values(req.query)[0];
-  console.log({ [key]: value });
+  console.log(key);
+  console.log(value);
+
   try {
-    const appointmentList = await dbModel.Appointment.find({ [key]: value })
-      .select({ price: 1, date: 1, customer: 1 })
-      .lean()
-      .exec();
+    const appointmentList = await dbModel.Appointment.find({
+      "employee._id": value,
+    });
+
     res.status(200).send(appointmentList);
   } catch (error) {
     res.status(404).send({ message: error.message });

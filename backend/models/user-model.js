@@ -28,6 +28,9 @@ const UserSchema = new mongoose.Schema(
       minlength: [5, "The password is too short"],
     },
     role: { type: String, value: ["admin", "employee", "customer"] },
+    appointments: [
+      { type: mongoose.SchemaTypes.ObjectId, ref: "appointments" },
+    ],
   },
   { versionKey: false }
 );
