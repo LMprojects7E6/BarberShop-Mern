@@ -52,8 +52,12 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const user = await dbModel.User.findById(req.params.id);
+  const userEmail = await dbModel.User.findOne({ email: req.body.email });
 
   if (!user) return res.status(404).send("No user with that id");
+
+  if (userEmail !== null && userEmail._id.toString() !== user._id.toString())
+    return res.status(404).send("This email is already taken");
 
   const updatedUser = await dbModel.User.findByIdAndUpdate(
     req.params.id,
