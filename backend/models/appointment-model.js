@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const AppointmentShema = new mongoose.Schema(
+const AppointmentSchema = new mongoose.Schema(
   {
     price: { type: Number, required: true, trim: true },
     date: { type: Date, required: true },
@@ -18,6 +18,6 @@ const AppointmentShema = new mongoose.Schema(
   { versionKey: false }
 );
 
-const AppointmentModel = mongoose.model("appointment", AppointmentShema);
+const AppointmentModel = mongoose.model("appointment", AppointmentSchema);
 
 module.exports = AppointmentModel;

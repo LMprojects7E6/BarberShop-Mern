@@ -1,4 +1,0 @@
-Aqui pondremos todas las funciones que son midlewares
-son todas aquellas funciones que se ejecutan entre peticiones
-y que nos ayudan de alguna manera a proporcionar logica/funcionalidad
-para nuestra REST API. 

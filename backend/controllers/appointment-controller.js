@@ -12,12 +12,12 @@ const getAppointments = async (req, res) => {
 };
 
 const getAppointmentsById = async (req, res) => {
-  const { id } = req.params;
-
+  const key = Object.keys(req.query);
+  const value = Object.values(req.query)[0];
+  console.log({ [key]: value });
   try {
-    const user = dbModel.User.find({_id: id});
-    const appointmentList = await dbModel.Appointment.find({})
-      .populate("employee", ({ _id: id }))
+    const appointmentList = await dbModel.Appointment.find({ [key]: value })
+      .select({ price: 1, date: 1, customer: 1 })
       .lean()
       .exec();
     res.status(200).send(appointmentList);
