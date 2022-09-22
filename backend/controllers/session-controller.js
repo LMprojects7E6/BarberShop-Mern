@@ -16,7 +16,7 @@ const loginController = async (req, res, next) => {
         if (!match) {
           return res
             .status(400)
-            .send("Wrong password and username please try again ");
+            .send({ errorMsg: `Wrong password and email combination` });
         } else {
           //If password is correct
           //Create JWT token
@@ -35,16 +35,16 @@ const loginController = async (req, res, next) => {
           });
           //Send response
           //TODO role response?
-          return res.status(200).send(user);
+          return res.status(200).send({ userExists: true });
         }
       });
     } else {
       return res
         .status(400)
-        .send(`Wrong password and username please try again `);
+        .send({ errorMsg: `Wrong password and email combination` });
     }
   } catch (error) {
-    return res.status(400).send({ message: `Error with the login: ${error}` });
+    return res.status(400).send({ errorMsg: `Error with the login: ${error}` });
   }
 };
 

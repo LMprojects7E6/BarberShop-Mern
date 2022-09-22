@@ -50,7 +50,7 @@ app.use("/login", loginRoutes);
 app.use("/logout", logoutRoutes);
 
 app.get("/dashboard", validateToken, (req, res, next) => {
-  res.send("YOU CAN ACCESS THIS AREA , INSERT ROLE " + req.role);
+  res.status(200).send({ role: req.role });
 });
 
 app.get("/test", (req, res, next) => {
