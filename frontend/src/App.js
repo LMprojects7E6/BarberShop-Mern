@@ -1,13 +1,11 @@
-import AppointmentTable from "./components/Table/Table";
-import { dataTableCustomer, currency } from "./data.js";
+import React from "react";
+import RouterPath from "./router/Router"
+
 
 function App() {
   return (
     <>
-      <div className="h-screen bg-fuchsia-800 flex justify-center items-center">
-        <h1 className="text-5xl text-white">BARBER SHOP TEST WITH TAILWIND</h1>
-      </div>
-      <AppointmentTable dataTableCustomer={dataTableCustomer} currency={currency}/>
+    <RouterPath />
     </>
   );
 }
