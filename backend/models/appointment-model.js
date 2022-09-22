@@ -6,18 +6,16 @@ const AppointmentShema = new mongoose.Schema(
     date: { type: Date, required: true },
     employee: {
       type: mongoose.SchemaTypes.ObjectId,
-      required: true,
       ref: "users",
     },
     customer: {
       type: mongoose.SchemaTypes.ObjectId,
-      required: true,
       ref: "users",
     },
   },
   { versionKey: false }
 );
 
-const AppointmentModel = mongoose.model("appointment", AppointmentShema);
+const AppointmentModel = mongoose.model("appointments", AppointmentShema);
 
 module.exports = AppointmentModel;
