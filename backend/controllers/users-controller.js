@@ -33,12 +33,12 @@ const deleteUser = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-  const { first_Name, last_Name, email, password, role } = req.body;
+  const { first_name, last_name, email, password, role } = req.body;
 
   try {
     const newUser = await dbModel.User.create({
-      first_Name,
-      last_Name,
+      first_name,
+      last_name,
       email,
       password,
       role,
