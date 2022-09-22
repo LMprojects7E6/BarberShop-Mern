@@ -15,7 +15,9 @@ const getAppointmentsById = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const appointmentList = await dbModel.Appointment.find({ employee: id })
+    const user = dbModel.User.find({_id: id});
+    const appointmentList = await dbModel.Appointment.find({})
+      .populate("employee", ({ _id: id }))
       .lean()
       .exec();
     res.status(200).send(appointmentList);

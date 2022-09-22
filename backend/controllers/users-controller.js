@@ -30,7 +30,7 @@ const deleteUser = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const customer = await dbModel.User.findOneAndDelete({ id: id });
+    const customer = await dbModel.User.findOneAndDelete({ _id: id });
     res.status(200).send(customer);
   } catch (error) {
     res.status(404).send({ message: error.message });
@@ -38,17 +38,18 @@ const deleteUser = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-  const { first_name, last_name, email, password, role } = req.body;
+  const { first_Name, last_Name, email, password, role } = req.body;
 
   try {
-    const newUser = dbModel.User.create({
-      first_name,
-      last_name,
+    const newUser = await dbModel.User.create({
+      first_Name,
+      last_Name,
       email,
       password,
       role,
     });
-    res.status(200).send(newUser);
+
+    res.status(200).send("User created");
   } catch (error) {
     res.status(404).send({ message: error.message });
   }
@@ -56,21 +57,12 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const { id } = req.params;
-  const { first_name, last_name, email, password } = req.body;
+  const { first_Name, last_Name, email, password } = req.body;
 
   try {
-    const updatedUser = dbModel.User.findOneAndUpdate(
-      {
-        _id: id,
-      },
-      {
-        $set: {
-          first_name: first_name,
-          last_name: last_name,
-          email: email,
-          password: password,
-        },
-      },
+    const updatedUser = await dbModel.User.findByIdAndUpdate(
+      id,
+      { first_Name, last_Name, email, password },
       {
         new: true,
       }
@@ -85,8 +77,6 @@ const updateUser = async (req, res) => {
 module.exports = {
   getAllUsers: getAllUsers,
   getUsers: getUsers,
-  // getUsersById: getUsersById,
-  // getUsersByRole: getUsersByRole,
   deleteUser: deleteUser,
   createUser: createUser,
   updateUser: updateUser,
