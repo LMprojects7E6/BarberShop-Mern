@@ -23,7 +23,6 @@ const Login = () => {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     userLogIn.mutate(data);
-    // handleMutation(data);
   };
 
   return (
