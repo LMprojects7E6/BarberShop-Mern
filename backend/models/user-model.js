@@ -21,20 +21,27 @@ const UserSchema = new mongoose.Schema(
         validator: (value) => validator.isEmail(value),
         message: (props) => `The email ${props.value} is not valid`,
       },
+      password: {
+        type: String,
+        required: [true, "The password is required"],
+        minlength: [5, "The password is too short"],
+      },
+      role: { type: String, value: ["admin", "employee", "customer"] },
+      appointments: [
+        { type: mongoose.SchemaTypes.ObjectId, ref: "appointments" },
+      ],
     },
     password: {
       type: String,
       required: [true, "The password is required"],
-      minlength: [5, "The password is too short"],
+      //!PASSWORD IS ALWAYS BIGGER THAN 5 >  minlength: [5, "The password is too short"],
     },
     role: { type: String, value: ["admin", "employee", "customer"] },
-    appointments: [
-      { type: mongoose.SchemaTypes.ObjectId, ref: "appointments" },
-    ],
+    appointments: [{ type: mongoose.SchemaTypes.ObjectId, ref: "appointment" }],
   },
   { versionKey: false }
 );
 
-const UserModel = mongoose.model("users", UserSchema);
+const UserModel = mongoose.model("user", UserSchema);
 
 module.exports = UserModel;

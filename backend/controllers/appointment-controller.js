@@ -1,16 +1,30 @@
 //CONNECTION TO DATABASE MODELS
 const dbModel = require("../models");
-const { updateUser } = require("./users-controller");
 
-const getAppointments = async (req, res) => {
+//!Get appointment OLD VERSION
+// const getAppointmentsById = async (req, res) => {
+//   const key = Object.keys(req.query);
+//   const value = Object.values(req.query)[0];
+//   console.log(key);
+//   console.log(value);
+
+//   try {
+//     const appointmentList = await dbModel.Appointment.find({
+//       "employee._id": value,
+//     });
+
+//     res.status(200).send(appointmentList);
+//   } catch (error) {
+//     res.status(404).send({ message: error.message });
+//   }
+// };
+
+//!Get appointment
+const getAllAppointmentsByUserId = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const appointmentList = await dbModel.User.find({ _id: id })
-      .populate("appointments")
-      .select({ appointments$date: 1 })
-      .lean()
-      .exec();
+    const appointmentList = await dbModel.User.find({_id: id }).populate('appointments');
 
     res.status(200).send(appointmentList);
   } catch (error) {
@@ -18,41 +32,40 @@ const getAppointments = async (req, res) => {
   }
 };
 
-const getAppointmentsById = async (req, res) => {
-  const key = Object.keys(req.query);
-  const value = Object.values(req.query)[0];
-  console.log(key);
-  console.log(value);
+//!ACCESS APOINTMENTS OF EMPLOYEE
+// app.get("/employee-appointment", async (req, res, next) => {
+//   const user = await Users.findById("632cf64765b88ef0037c6c81").populate(
+//     "appointments"
+//   );
 
-  try {
-    const appointmentList = await dbModel.Appointment.find({
-      "employee._id": value,
-    });
+//   res.send(user.appointments);
+// });
 
-    res.status(200).send(appointmentList);
-  } catch (error) {
-    res.status(404).send({ message: error.message });
-  }
+//!Create appointment
+const createAppointment = async (req, res) => {
+  const { employeeID, customerID, appointment } = req.body;
+  const { date } = appointment;
+  const formatDate = new Date(date);
+  appointment.date = formatDate;
+  //Create appointment
+  const appointmentBD = await dbModel.Appointment.create(appointment);
+  await appointmentBD.save();
+  //Create reference of appointment in employee
+  const employeeAppointment = await dbModel.User.findByIdAndUpdate(employeeID, {
+    $push: { appointments: appointmentBD.id },
+  });
+  await employeeAppointment.save();
+  //Create reference of appointment in customer
+  const customerAppointment = await dbModel.User.findByIdAndUpdate(customerID, {
+    $push: { appointments: appointmentBD.id },
+  });
+  await customerAppointment.save();
+
+  res.send("CREATED APOINTMENT");
 };
 
-const createAppointment = (req, res) => {
-  const { price, employee, customer, date } = req.body;
-
-  try {
-    const newAppointment = dbModel.Appointment.create({
-      price,
-      employee,
-      customer,
-      date,
-    });
-    updateUser(customer, newAppointment);
-    res.status(200).send(newAppointment);
-  } catch (error) {
-    res.status(404).send({ message: error.message });
-  }
-};
-
-const updateUser = async (customer, newAppointment) => {
+//!Update appointment TODO ??
+const updateAppointment = async (customer, newAppointment) => {
   const filter = { _id: customer };
   const update = { appointments: appointments.push(newAppointment) };
   try {
@@ -62,6 +75,7 @@ const updateUser = async (customer, newAppointment) => {
   }
 };
 
+//!Delete appointment
 const deleteAppointment = async (req, res) => {
   const { id } = req.params;
 
@@ -74,8 +88,7 @@ const deleteAppointment = async (req, res) => {
 };
 
 module.exports = {
-  getAppointmentsById: getAppointmentsById,
+  getAllAppointmentsByUserId: getAllAppointmentsByUserId,
   createAppointment: createAppointment,
   deleteAppointment: deleteAppointment,
-  getAppointments: getAppointments,
 };

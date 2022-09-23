@@ -1,6 +1,7 @@
 //CONNECTION TO DATABASE MODELS
 const dbModel = require("../models");
 
+//!Get Users
 const getUsers = async (req, res) => {
   const objectKeys = Object.keys(req.body);
   const objectValues = Object.values(req.body);
@@ -23,6 +24,7 @@ const getUsers = async (req, res) => {
   }
 };
 
+//!Delete User
 const deleteUser = async (req, res) => {
   const { id } = req.params;
 
@@ -34,6 +36,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
+//!Create User
 const createUser = async (req, res) => {
   const { first_name, last_name, email, password, role } = req.body;
 
@@ -52,6 +55,7 @@ const createUser = async (req, res) => {
   }
 };
 
+//!Update User
 const updateUser = async (req, res) => {
   const user = await dbModel.User.findById(req.params.id);
   const userByEmail = await dbModel.User.findOne({ email: req.body.email });
@@ -75,6 +79,7 @@ const updateUser = async (req, res) => {
   res.status(200).send(updatedUser);
 };
 
+//!Helper object to GET Users
 const queryToKey = {
   role: "role",
   id: "_id",
