@@ -1,0 +1,85 @@
+@import url('../../../../assets/fonts/fonts.css');
+
+.style_ourbarber-bg{
+    /* background-color: #3A3838; */
+    opacity: 86%;
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+.style_cards-barbers{
+    width: 100%;
+    height: 100%;
+}
+
+.bg_style-card{
+    background-color: #3A3838;
+}
+.style_btn-ourbarber button{
+    background-color: #D5A353;
+}
+
+.style_ourbarber-center{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+
+.style_ourbarber-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    align-items: center;
+    position: absolute;
+}
+
+.style_ourbarber-p{
+    font-family: 'Kreon';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 45px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.style_ourbarber-h2{
+    flex-direction: column;
+    font-family: 'Ibarra Real Nova';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 60px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #D5A353;
+}
+
+.style_ourbarber-h2 hr{
+    width: 250px;
+    border-color: #8C8C8C;
+}
+
+.style_cards-fonts h5{
+    font-family: 'Kreon';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.style_cards-fonts p{
+    font-family: 'Kreon';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 32px;
+    color: #D5A353;
+}
