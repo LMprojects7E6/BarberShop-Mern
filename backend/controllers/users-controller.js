@@ -40,13 +40,15 @@ const deleteUser = async (req, res) => {
 //!Create User
 const createUser = async (req, res) => {
   const { first_name, last_name, email, password, role } = req.body;
+	//Encrypt data
+	const hash = await bcrypt.hash(password, 10);
 
   try {
     const newUser = await dbModel.User.create({
       first_name,
       last_name,
       email,
-      password,
+      password: hash,
       role,
     });
 

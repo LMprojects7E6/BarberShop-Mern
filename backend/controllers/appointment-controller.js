@@ -1,30 +1,14 @@
 //CONNECTION TO DATABASE MODELS
 const dbModel = require("../models");
 
-//!Get appointment OLD VERSION
-// const getAppointmentsById = async (req, res) => {
-//   const key = Object.keys(req.query);
-//   const value = Object.values(req.query)[0];
-//   console.log(key);
-//   console.log(value);
-
-//   try {
-//     const appointmentList = await dbModel.Appointment.find({
-//       "employee._id": value,
-//     });
-
-//     res.status(200).send(appointmentList);
-//   } catch (error) {
-//     res.status(404).send({ message: error.message });
-//   }
-// };
-
 //!Get appointment
 const getAllAppointmentsByUserId = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const appointmentList = await dbModel.User.find({_id: id }).populate('appointments');
+    const appointmentList = await dbModel.User.find({ _id: id }).populate(
+      "appointments"
+    );
 
     res.status(200).send(appointmentList);
   } catch (error) {
@@ -32,14 +16,14 @@ const getAllAppointmentsByUserId = async (req, res) => {
   }
 };
 
-//!ACCESS APOINTMENTS OF EMPLOYEE
-// app.get("/employee-appointment", async (req, res, next) => {
-//   const user = await Users.findById("632cf64765b88ef0037c6c81").populate(
-//     "appointments"
-//   );
+//!Update Users appointment array
+const updateAppointment = async (req, res) => {
+  const { id, appointments } = req.body;
 
-//   res.send(user.appointments);
-// });
+  try {
+    const updateUser = dbModel.User.findOneAndUpdate({ _id: id });
+  } catch (error) {}
+};
 
 //!Create appointment
 const createAppointment = async (req, res) => {
@@ -64,24 +48,28 @@ const createAppointment = async (req, res) => {
   res.send("CREATED APOINTMENT");
 };
 
-//!Update appointment TODO ??
-const updateAppointment = async (customer, newAppointment) => {
-  const filter = { _id: customer };
-  const update = { appointments: appointments.push(newAppointment) };
-  try {
-    const updateAppointment = await dbModel.User.updateOne(filter, update);
-  } catch (error) {
-    res.status(404).send({ message: error.message });
-  }
-};
-
 //!Delete appointment
 const deleteAppointment = async (req, res) => {
-  const { id } = req.params;
+  const { employeeID, customerID, appointmentID } = req.body;
 
   try {
-    const appointment = await dbModel.Appointment.findOneAndDelete({ id: id });
-    res.status(200).send(appointment);
+    //Delete reference of appointment in employee
+    const employeeAppointment = await dbModel.User.findByIdAndUpdate(
+      employeeID,
+      {
+        $pull: { appointments: appointmentID },
+      }
+    );
+    //Delete reference of appointment in customer
+    const customerAppointment = await dbModel.User.findByIdAndUpdate(
+      customerID,
+      {
+        $pull: { appointments: appointmentID },
+      }
+    );
+    //Delete the appointment
+    const appointment = await dbModel.Appointment.findOneAndDelete({ _id: appointmentID });
+    res.status(200).send("Appointment deleted successfuly!");
   } catch (error) {
     res.status(404).send({ message: error.message });
   }
@@ -90,5 +78,6 @@ const deleteAppointment = async (req, res) => {
 module.exports = {
   getAllAppointmentsByUserId: getAllAppointmentsByUserId,
   createAppointment: createAppointment,
+  updateAppointment: updateAppointment,
   deleteAppointment: deleteAppointment,
 };
