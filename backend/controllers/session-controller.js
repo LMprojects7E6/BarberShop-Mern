@@ -50,6 +50,7 @@ const loginController = async (req, res, next) => {
 
 //!REGISTER FUNCTION
 const registerController = async (req, res, next) => {
+  console.log(req.body);
   try {
     //Get body params
     const {

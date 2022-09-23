@@ -12,12 +12,12 @@ require("dotenv").config();
 const connect = require("./config/dbConfig");
 connect();
 
-//!MIDDLEWARES
+//!MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 const corsOptions = {
-  //Allow to set coockies in header
+  //Allow to set cookies in header
   credentials: true,
   //allow petitions from this domain when deploying maybe change to actual domain name
   origin: "http://localhost:3000",

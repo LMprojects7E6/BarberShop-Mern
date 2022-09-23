@@ -1,44 +1,53 @@
 import axios from "axios";
-import React, { useRef } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-//Allow to send coockies header request
+
+import { useMutation } from "@tanstack/react-query";
+import { register } from "../../Api/session";
+
+//Allow to send cookies header request
 axios.defaults.withCredentials = true;
+
 const Register = () => {
-  const first_name = useRef(null);
-  const last_name = useRef(null);
-  const email = useRef(null);
-  const password = useRef(null);
-  const navigate = useNavigate(null);
-  const handleClick = (e) => {
-    e.preventDefault();
-    const data = {
-      first_name: first_name.current.value,
-      last_name: last_name.current.value,
-      email: email.current.value,
-      password: password.current.value,
-    };
-    axios
-      .post("http://localhost:5000/register", data)
-      .then((res) => {
-        if (res.data.userRegistered && res.status === 200) {
+  const navigate = useNavigate();
+
+  const createUser = useMutation(register);
+
+  const handleMutation = (data) => {
+    createUser.mutate(
+      data,
+      {
+        onSuccess: () => {
           navigate("/dashboard");
-        }
-      })
-      //TODO: handle error here
-      .catch((err) => toast.error(err.response.data.errorMsg));
+        },
+      },
+      {
+        onError: (err) => {
+          console.log(err.response.data);
+          toast.error(err.response.data.errorMsg);
+        },
+      }
+    );
   };
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    handleMutation(data);
+  };
+
   return (
     <div>
       <form action="" onSubmit={handleClick} className="flex flex-col">
         FIRST NAME:
-        <input type="text" name="first_name" ref={first_name} />
+        <input type="text" name="first_name" />
         LAST NAME:
-        <input type="text" name="last_name " ref={last_name} />
+        <input type="text" name="last_name" />
         EMAIL:
-        <input type="email" name="email" ref={email} />
+        <input type="email" name="email" />
         PASSWORD:
-        <input type="password" name="password" ref={password} />
+        <input type="password" name="password" />
         <button className="text-white bg-black">REGISTER</button>
       </form>
     </div>
