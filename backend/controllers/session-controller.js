@@ -20,9 +20,9 @@ const loginController = async (req, res, next) => {
         } else {
           //If password is correct
           //Create JWT token
-          const accesToken = createToken(user);
+          const accessToken = createToken(user);
           //Store JWT in coockies
-          res.cookie("access-token", accesToken, {
+          res.cookie("access-token", accessToken, {
             //TODO: check secure depending on environment
             //Petition with http or https only
             secure: false,
@@ -50,7 +50,6 @@ const loginController = async (req, res, next) => {
 
 //!REGISTER FUNCTION
 const registerController = async (req, res, next) => {
-  console.log(req.body);
   try {
     //Get body params
     const {
@@ -79,7 +78,7 @@ const registerController = async (req, res, next) => {
       //If password is correct
       //Create JWT token
       const accesToken = createToken(user);
-      //Store JWT in coockies
+      //Store JWT in cookies
       res.cookie("access-token", accesToken, {
         //TODO: check secure depending on environment
         //Petition with http or https only

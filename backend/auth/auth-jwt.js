@@ -10,7 +10,7 @@ const createToken = (user) => {
       role: user.role,
     },
     process.env.SECRET_KEY,
-    { expiresIn: "10s" }
+    { expiresIn: "500s" }
   );
   return accessToken;
 };
@@ -18,6 +18,7 @@ const createToken = (user) => {
 const validateToken = (req, res, next) => {
   //Get cookies from client
   const accessToken = req.cookies["access-token"];
+  console.log(req.headers);
   //If jwt doesnt exist
   if (!accessToken) {
     return res.status(400).send("Token is not set please try to log in");
