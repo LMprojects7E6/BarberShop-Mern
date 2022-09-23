@@ -1,7 +1,6 @@
 import React from "react";
 
-import videoBackGround from "../../assets/video/video_backGround.mp4";
-import Calendar from "../../components/Calendar/Calendar";
+import Calendar from "../../components/Calendar/CalendarComponent";
 import Footer from "../../components/Footer/Footer";
 import Testimonials from "../../components/Testimonials/Testimonials";
 import Navbar from "../../components/Navbar/Navbar";
@@ -12,6 +11,8 @@ import ButtonAppointment from "../../components/ButtonAppointment/ButtonAppointm
 import DashboardBackground from "../../components/DashboardBackground/DashboardBackground";
 
 import "../DashboardCustomer/DashboardCustomer.css";
+import CalendarComponent from "../../components/Calendar/CalendarComponent";
+
 const DashboardCustomer = () => {
   return (
     <>
@@ -28,6 +29,7 @@ const DashboardCustomer = () => {
         </p>
         <ButtonAppointment />
       </div>
+      <CalendarComponent />
       {/* <Calendar/>
     <Testimonials />
     <Footer/> */}
