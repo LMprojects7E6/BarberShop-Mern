@@ -2,8 +2,10 @@
 const dbModel = require("../models");
 
 const getUsers = async (req, res) => {
-  const key = Object.keys(req.query);
-  const value = Object.values(req.query)[0];
+  const objectKeys = Object.keys(req.body);
+  const objectValues = Object.values(req.body);
+  const key = objectKeys[0];
+  const value = objectValues[0];
 
   if (!queryToKey[key]) {
     res.status(400).send({ message: "invalid endpoint" });
