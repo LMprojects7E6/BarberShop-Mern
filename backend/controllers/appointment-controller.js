@@ -1,20 +1,83 @@
-//CONECTION TO THE DATABASE
-const db = "";
+//CONNECTION TO DATABASE MODELS
+const dbModel = require("../models");
 
-async function getAppointmentsByEmployee(req, res, next) {}
+//!Get appointment
+const getAllAppointmentsByUserId = async (req, res) => {
+  const { id } = req.params;
 
-async function getAppointmentsByCostumer(req, res, next) {}
+  try {
+    const appointmentList = await dbModel.User.find({ _id: id }).populate(
+      "appointments"
+    );
 
-async function getAppointmentsByRole(req, res, next) {}
+    res.status(200).send(appointmentList);
+  } catch (error) {
+    res.status(404).send({ message: error.message });
+  }
+};
 
-async function createAppointment(req, res, next) {}
+//!Update Users appointment array
+const updateAppointment = async (req, res) => {
+  const { id, appointments } = req.body;
 
-async function deleteAppointment(req, res, next) {}
+  try {
+    const updateUser = dbModel.User.findOneAndUpdate({ _id: id });
+  } catch (error) {}
+};
+
+//!Create appointment
+const createAppointment = async (req, res) => {
+  const { employeeID, customerID, appointment } = req.body;
+  const { date } = appointment;
+  const formatDate = new Date(date);
+  appointment.date = formatDate;
+  //Create appointment
+  const appointmentBD = await dbModel.Appointment.create(appointment);
+  await appointmentBD.save();
+  //Create reference of appointment in employee
+  const employeeAppointment = await dbModel.User.findByIdAndUpdate(employeeID, {
+    $push: { appointments: appointmentBD.id },
+  });
+  await employeeAppointment.save();
+  //Create reference of appointment in customer
+  const customerAppointment = await dbModel.User.findByIdAndUpdate(customerID, {
+    $push: { appointments: appointmentBD.id },
+  });
+  await customerAppointment.save();
+
+  res.send("CREATED APOINTMENT");
+};
+
+//!Delete appointment
+const deleteAppointment = async (req, res) => {
+  const { employeeID, customerID, appointmentID } = req.body;
+
+  try {
+    //Delete reference of appointment in employee
+    const employeeAppointment = await dbModel.User.findByIdAndUpdate(
+      employeeID,
+      {
+        $pull: { appointments: appointmentID },
+      }
+    );
+    //Delete reference of appointment in customer
+    const customerAppointment = await dbModel.User.findByIdAndUpdate(
+      customerID,
+      {
+        $pull: { appointments: appointmentID },
+      }
+    );
+    //Delete the appointment
+    const appointment = await dbModel.Appointment.findOneAndDelete({ _id: appointmentID });
+    res.status(200).send("Appointment deleted successfuly!");
+  } catch (error) {
+    res.status(404).send({ message: error.message });
+  }
+};
 
 module.exports = {
-  getAppointmentsByEmployee: getAppointmentsByEmployee,
-  getAppointmentsByCostumer: getAppointmentsByCostumer,
+  getAllAppointmentsByUserId: getAllAppointmentsByUserId,
   createAppointment: createAppointment,
+  updateAppointment: updateAppointment,
   deleteAppointment: deleteAppointment,
-  getAppointmentsByRole: getAppointmentsByRole,
 };
