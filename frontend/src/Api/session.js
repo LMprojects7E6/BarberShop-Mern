@@ -5,7 +5,12 @@ export const register = async (formData) => {
   return response.data;
 };
 
-export const signUp = async (formData) => await api.post("/signup", formData);
+export const logIn = async (formData) => {
+  api.defaults.withCredentials = true;
+  const response = await api.post("/login", formData);
+  return response.data;
+};
+
 export const forgotPassword = async (formData) => {
   await api.post("/forgot", formData);
 };

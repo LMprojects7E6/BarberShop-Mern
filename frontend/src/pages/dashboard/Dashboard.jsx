@@ -32,7 +32,10 @@ const Dashboard = () => {
           navigate("/login");
         }
       })
-      .catch((err) => navigate("/login"));
+      .catch((err) => {
+        console.log(err);
+        // navigate("/login");
+      });
   }, []);
 
   return <div>{role && chooseDashboard(role)}</div>;

@@ -5,41 +5,27 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { register } from "../../Api/session";
 
-//Allow to send cookies header request
-axios.defaults.withCredentials = true;
-
 const Register = () => {
   const navigate = useNavigate();
+  const createUser = useMutation(register, {
+    onSuccess: () => {
+      navigate("/dashboard");
+    },
+    onError: (err) => {
+      toast.error(err.response.data.errorMsg);
+    },
+  });
 
-  const createUser = useMutation(register);
-
-  const handleMutation = (data) => {
-    createUser.mutate(
-      data,
-      {
-        onSuccess: () => {
-          navigate("/dashboard");
-        },
-      },
-      {
-        onError: (err) => {
-          console.log(err.response.data);
-          toast.error(err.response.data.errorMsg);
-        },
-      }
-    );
-  };
-
-  const handleClick = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    handleMutation(data);
+    createUser.mutate(data);
   };
 
   return (
     <div>
-      <form action="" onSubmit={handleClick} className="flex flex-col">
+      <form action="" onSubmit={handleSubmit} className="flex flex-col">
         FIRST NAME:
         <input type="text" name="first_name" />
         LAST NAME:
