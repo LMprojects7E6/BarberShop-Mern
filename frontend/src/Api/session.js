@@ -6,8 +6,12 @@ export const register = async (formData) => {
 };
 
 export const logIn = async (formData) => {
-  api.defaults.withCredentials = true;
   const response = await api.post("/login", formData);
+  return response.data;
+};
+
+export const getRoleByToken = async () => {
+  const response = await api.get("/dashBoard");
   return response.data;
 };
 

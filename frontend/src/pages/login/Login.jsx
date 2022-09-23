@@ -6,21 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { logIn } from "../../Api/session";
 
-// axios.defaults.withCredentials = true;
 const Login = () => {
-  // const handleMutation = (data) => {
-  //   axios
-  //     .post("http://localhost:5000/login", data)
-  //     .then((res) => {
-  //       const { userExists } = res.data;
-  //       if (userExists && res.status === 200) {
-  //         navigate("/dashboard");
-  //       }
-  //     })
-  //     //TODO: handle error here
-  //     .catch((err) => toast.error(err.response.data.errorMsg));
-  // };
-
   const navigate = useNavigate();
 
   const userLogIn = useMutation(logIn, {
