@@ -12,7 +12,7 @@ require("dotenv").config();
 const connect = require("./config/dbConfig");
 connect();
 
-//!MIDDLEWARES
+//!MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
@@ -28,16 +28,6 @@ app.use(cookieParser());
 const { validateToken } = require("./auth/auth-jwt");
 
 //!ROUTES
-/***************/
-//TODO FIX ROUTES ESTO NO FUNCIONA Y PETA
-// const userRoutes = require("./routes/users-routes");
-// const employeesRoutes = require("./routes/employees-routes");
-// const customersRoutes = require("./routes/customers-routes");
-// const appointmentRoutes = require("./routes/appointment-routes");
-// app.use("/users", userRoutes);
-// app.use("/employees", employeesRoutes);
-// app.use("/customers", customersRoutes);
-// app.use("/appointment", appointmentRoutes);
 
 //!REQUIRE ROUTES ROUTE
 const registerRoutes = require("./routes/register-routes");
@@ -51,15 +41,41 @@ app.use("/login", loginRoutes);
 
 app.use("/logout", logoutRoutes);
 
-app.get("/dashboard", validateToken, (req, res, next) => {
-  res.status(200).send({ role: req.role });
-});
+//!TODO:DELETE TEST AND PUT IT IN CORRESPONDENT FOLDER
+// app.get("/dashboard", validateToken, (req, res, next) => {
+//   res.status(200).send({ role: req.role });
+// });
+const Users = require("./models/user-model");
+const Appointments = require("./models/appointment-model");
+//!Create appointment
+app.post("/appointment", async (req, res, next) => {
+  const { employeeID, customerID, appointment } = req.body;
+  const { date } = appointment;
+  const formatDate = new Date(date);
+  appointment.date = formatDate;
+  //Create appointment
+  const appointmentBD = await Appointments.create(appointment);
+  await appointmentBD.save();
+  //Create reference of appointment in employee
+  const employeeAppointment = await Users.findByIdAndUpdate(employeeID, {
+    $push: { appointments: appointmentBD.id },
+  });
+  await employeeAppointment.save();
+  //Create reference of appointment in customer
+  const customerAppointment = await Users.findByIdAndUpdate(customerID, {
+    $push: { appointments: appointmentBD.id },
+  });
+  await customerAppointment.save();
 
-app.get("/test", (req, res, next) => {
-  res.send("PETITION GOOD");
+  res.send("CREATED APOINTMENT");
 });
-app.post("/test", (req, res, next) => {
-  res.send(req.body);
+//!ACCESS APOINTMENTS OF EMPLOYEE
+app.get("/employee-appointment", async (req, res, next) => {
+  const user = await Users.findById("632cf64765b88ef0037c6c81").populate(
+    "appointments"
+  );
+
+  res.send(user.appointments);
 });
 //!PORT TO LISTEN
 app.listen(process.env.PORT, () => {

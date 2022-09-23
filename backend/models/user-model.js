@@ -27,6 +27,7 @@ const UserSchema = new mongoose.Schema({
     //!PASSWORD HAS ALWAYS BIGGER THAN 5 >  minlength: [5, "The password is too short"],
   },
   role: { type: String, value: ["admin", "employee", "customer"] },
+  appointments: [{ type: mongoose.SchemaTypes.ObjectId, ref: "appointment" }],
 });
 
 const UserModel = mongoose.model("user", UserSchema);
