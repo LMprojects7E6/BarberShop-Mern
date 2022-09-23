@@ -1,20 +1,13 @@
 const mongoose = require("mongoose");
 
-const AppointmentShema = new mongoose.Schema({
-  price: { type: Number, required: true, trim: true },
-  data: { type: Data, required: true },
-  employee: {
-    type: mongoose.SchemaTypes.ObjectId,
-    required: true,
-    ref: "user",
+const AppointmentSchema = new mongoose.Schema(
+  {
+    price: { type: Number, required: true, trim: true },
+    date: { type: Date, required: true },
   },
-  customer: {
-    type: mongoose.SchemaTypes.ObjectId,
-    required: true,
-    ref: "user",
-  },
-});
+  { versionKey: false }
+);
 
-const AppointmentModel = mongoose.model("appointment", AppointmentShema);
+const AppointmentModel = mongoose.model("appointment", AppointmentSchema);
 
 module.exports = AppointmentModel;

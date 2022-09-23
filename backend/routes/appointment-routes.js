@@ -1,10 +1,11 @@
+//!IMPORT DEPENDENCIES
 const express = require("express");
-
 const router = express.Router();
 const appointmentController = require("../controllers/appointment-controller");
 
-router.post("/", appointmentController.createAppointment);
-router.get("/:role", appointmentController.getAppointmentsByRole);
-router.delete("/:role/:id", appointmentController.deleteAppointment);
+//!CRUD
+router.get("/:id",appointmentController.getAllAppointmentsByUserId );
+router.post("/", appointmentController.createAppointment );
+router.delete("/:role/:id", );
 
 module.exports = router;
