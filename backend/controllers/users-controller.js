@@ -1,5 +1,6 @@
 //CONNECTION TO DATABASE MODELS
 const dbModel = require("../models");
+const bcrypt = require("bcrypt");
 
 //!Get Users
 const getUsers = async (req, res) => {
@@ -59,6 +60,9 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   const user = await dbModel.User.findById(req.params.id);
   const userByEmail = await dbModel.User.findOne({ email: req.body.email });
+	//Encrypt data
+	const hash = await bcrypt.hash(req.body.password, 10);
+	req.body.password = hash;
 
   if (!user) return res.status(404).send("No user with that id");
 
