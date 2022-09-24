@@ -10,7 +10,7 @@ import ButtonAppointment from "../../components/ButtonAppointment/ButtonAppointm
 
 import DashboardBackground from "../../components/DashboardBackground/DashboardBackground";
 
-import "../DashboardCustomer/DashboardCustomer.css";
+// import "../DashboardCustomer/DashboardCustomer.css";
 import CalendarComponent from "../../components/Calendar/CalendarComponent";
 
 const DashboardCustomer = () => {

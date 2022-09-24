@@ -1,9 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import DashboardCustomer from "../pages/DashboardCustomer/DashboardCustomer";
-import Login from "../pages/LoginPage/Login";
-import Login2 from "../pages/LoginPage/Login";
-import Register from "../pages/RegisterPage/Register";
+import DashboardCustomer from "../pages/customer/DashboardCustomer";
+import Login from "../pages/login/Login";
+import Register from "../pages/register/Register";
 import DashboardAdmin from "../pages/admin/DashboardAdmin";
 import DashboardEmployees from "../pages/employee/DashboardEmployees";
 

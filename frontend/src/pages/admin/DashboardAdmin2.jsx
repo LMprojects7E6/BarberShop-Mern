@@ -66,11 +66,12 @@ const DashboardAdmin = () => {
     },
   });
 
-  const userCreated = (data) => {
+  const userUpdated = (data) => {
     queryClient.invalidateQueries(["getCustomers", "getEmployees"]);
     toast.success(data);
   };
-  const userUpdated = (data) => {
+
+  const userCreated = (data) => {
     queryClient.invalidateQueries(["getCustomers", "getEmployees"]);
     toast.success(data);
   };

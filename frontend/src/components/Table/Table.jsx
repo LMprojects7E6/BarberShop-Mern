@@ -1,17 +1,11 @@
-import React from "react";
-import ButtonForTable from "../Button/ButtonForTable";
+import Modal from "../modal/Modal";
+import EditButton from "../buttons /EditButton";
 
-const AppointmentTable = ({ dataUsers }) => {
+const Table = ({ dataUsers, isEmployee }) => {
+  console.log(isEmployee === "truee");
+
   //Data for creating thead of table
   const tHead = ["FIRST NAME", "LAST NAME", "EMAIL", "PASSWORD", "", ""];
-
-  const handleEdit = () => {
-    console.log("EDIT");
-  };
-
-  const handleDelete = () => {
-    console.log("DELETE");
-  };
 
   return (
     <div className=" overflow-x-auto">
@@ -57,11 +51,29 @@ const AppointmentTable = ({ dataUsers }) => {
                       {password}
                     </p>
                   </td>
+
+                  <>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      {/* {isEmployee === "true" && ( */}
+                      <Modal
+                        modalTitle={"EDIT EMPLOYEE DATA"}
+                        buttonType={"edit"}
+                        button={EditButton}
+                      >
+                        <div>EDIT MODAL</div>
+                      </Modal>
+                      {/* )} */}
+                    </td>
+                  </>
+
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <ButtonForTable onClick={handleEdit}>Edit</ButtonForTable>
-                  </td>
-                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <ButtonForTable onClick={handleDelete}>X</ButtonForTable>
+                    <Modal
+                      modalTitle={"DELETE EMPLOYEE"}
+                      buttonType={"delete"}
+                      button={EditButton}
+                    >
+                      <div>Are you sure you want to delete this employee:</div>
+                    </Modal>
                   </td>
                 </tr>
               );
@@ -73,4 +85,4 @@ const AppointmentTable = ({ dataUsers }) => {
   );
 };
 
-export default AppointmentTable;
+export default Table;
