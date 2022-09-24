@@ -11,7 +11,7 @@ export const logIn = async (formData) => {
 };
 
 export const getRoleByToken = async () => {
-  const response = await api.get("/dashBoard");
+  const response = await api.get("/session");
   return response.data;
 };
 

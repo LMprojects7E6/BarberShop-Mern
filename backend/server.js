@@ -47,7 +47,7 @@ app.use("/login", loginRoutes);
 app.use("/logout", logoutRoutes);
 
 //!TODO:DELETE TEST AND PUT IT IN CORRESPONDENT FOLDER
-app.get("/dashboard", validateToken, (req, res, next) => {
+app.get("/session", validateToken, (req, res, next) => {
   res.status(200).send({ role: req.role });
 });
 
