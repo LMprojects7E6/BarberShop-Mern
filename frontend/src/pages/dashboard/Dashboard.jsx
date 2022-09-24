@@ -10,7 +10,6 @@ import { getRoleByToken } from "../../Api/session";
 
 const Dashboard = () => {
   const [role, setRol] = useState();
-
   const navigate = useNavigate();
 
   const { isLoading, isError, data, error } = useQuery(
@@ -28,6 +27,9 @@ const Dashboard = () => {
 
   if (isLoading) {
     return <div>IS LOADING</div>;
+  }
+  if (isError) {
+    navigate("/login");
   }
 
   return <div>{chooseDashboard[role]}</div>;

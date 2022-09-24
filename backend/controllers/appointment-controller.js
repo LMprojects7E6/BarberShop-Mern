@@ -45,7 +45,7 @@ const createAppointment = async (req, res) => {
   });
   await customerAppointment.save();
 
-  res.send("CREATED APOINTMENT");
+  res.send("CREATED APPOINTMENT");
 };
 
 //!Delete appointment
@@ -68,8 +68,10 @@ const deleteAppointment = async (req, res) => {
       }
     );
     //Delete the appointment
-    const appointment = await dbModel.Appointment.findOneAndDelete({ _id: appointmentID });
-    res.status(200).send("Appointment deleted successfuly!");
+    const appointment = await dbModel.Appointment.findOneAndDelete({
+      _id: appointmentID,
+    });
+    res.status(200).send("Appointment deleted successfully!");
   } catch (error) {
     res.status(404).send({ message: error.message });
   }

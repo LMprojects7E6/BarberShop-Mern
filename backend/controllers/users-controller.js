@@ -4,9 +4,8 @@ const bcrypt = require("bcrypt");
 
 //!Get Users
 const getUsers = async (req, res) => {
-  const objectKeys = Object.keys(req.body);
-  const objectValues = Object.values(req.body);
-  const key = objectKeys[0];
+  const key = Object.keys(req.query);
+  const objectValues = Object.values(req.query);
   const value = objectValues[0];
 
   if (!queryToKey[key]) {
@@ -27,21 +26,22 @@ const getUsers = async (req, res) => {
 
 //!Delete User
 const deleteUser = async (req, res) => {
-  const { id } = req.params;
-
+  const { id } = req.query;
   try {
     const customer = await dbModel.User.findOneAndDelete({ _id: id });
+    console.log(customer);
     res.status(200).send(customer);
   } catch (error) {
-    res.status(404).send({ message: error.message });
+    res.status(404).send({ message: "user not found" });
   }
 };
 
 //!Create User
 const createUser = async (req, res) => {
   const { first_name, last_name, email, password, role } = req.body;
-	//Encrypt data
-	const hash = await bcrypt.hash(password, 10);
+  console.log(req.body);
+  //Encrypt data
+  const hash = await bcrypt.hash(password, 10);
 
   try {
     const newUser = await dbModel.User.create({
@@ -60,11 +60,11 @@ const createUser = async (req, res) => {
 
 //!Update User
 const updateUser = async (req, res) => {
-  const user = await dbModel.User.findById(req.params.id);
+  const user = await dbModel.User.findById(req.query.id);
   const userByEmail = await dbModel.User.findOne({ email: req.body.email });
-	//Encrypt data
-	const hash = await bcrypt.hash(req.body.password, 10);
-	req.body.password = hash;
+  //Encrypt data
+  const hash = await bcrypt.hash(req.body.password, 10);
+  req.body.password = hash;
 
   if (!user) return res.status(404).send("No user with that id");
 

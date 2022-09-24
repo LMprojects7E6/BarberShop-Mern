@@ -7,7 +7,6 @@ export const register = async (formData) => {
 
 export const logIn = async (formData) => {
   const response = await api.post("/login", formData);
-  console.log(response.data);
   return response.data;
 };
 
@@ -16,7 +15,7 @@ export const getRoleByToken = async () => {
   return response.data;
 };
 
-export const logOut = async (formData) => {
-  const response = await api.post("/login", formData);
+export const logOut = async () => {
+  const response = await api.post("/logout");
   return response.data;
 };
