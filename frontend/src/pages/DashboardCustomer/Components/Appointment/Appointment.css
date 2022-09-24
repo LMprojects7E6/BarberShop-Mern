@@ -1,0 +1,50 @@
+@import url('../../../../assets/fonts/fonts.css');
+
+.style_appointment-bg{
+        background-image: url('../../../../assets/img/BackGrounds/barber_background.jpg');
+        width: 100%;
+        height: 100vh;
+        background-position: center;
+        background-size:cover;
+        background-repeat: no-repeat;
+        opacity: 85%;
+    }
+
+.style_bg-calendar{
+    width: 100%;
+    height: 70vh;
+    background: #343536;
+}
+
+.style_appointment-title{
+    display: flex;
+    position: absolute;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.style_appointment-title h1{
+    font-family: 'Inria Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 95px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    padding-top: 2rem;
+}
+
+.style_appointment-title a{
+    font-family: 'Inria Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 13px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #BEBEBE;
+}

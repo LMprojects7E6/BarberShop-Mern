@@ -1,0 +1,15 @@
+@import url('../../assets/fonts/fonts.css');
+
+.background_footer{
+    background-image: url('../../assets/img/BackGrounds/barber_background5.jpg');
+    width: 100%;
+    height: 100vh;
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.style_footer-font{
+    font-family: 'Kreon';
+}
