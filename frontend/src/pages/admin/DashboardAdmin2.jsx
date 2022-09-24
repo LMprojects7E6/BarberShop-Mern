@@ -57,17 +57,14 @@ const DashboardAdmin = () => {
     },
   });
 
-  const updateUserByAdmin = useMutation(
-    updateUser
-    //   {
-    //   onSuccess: (resp) => {
-    //     userUpdated(resp);
-    //   },
-    //   onError: (err) => {
-    //     toast.error(err.response.data.errorMsg);
-    //   },
-    // }
-  );
+  const updateUserByAdmin = useMutation(updateUser, {
+    onSuccess: (resp) => {
+      userUpdated(resp);
+    },
+    onError: (err) => {
+      toast.error(err.response.data.errorMsg);
+    },
+  });
 
   const userCreated = (data) => {
     queryClient.invalidateQueries(["getCustomers", "getEmployees"]);
@@ -89,8 +86,6 @@ const DashboardAdmin = () => {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     console.log(data);
-    //test must change with different forms
-    //createUserByAdmin.mutate({ ...data, rol: "customer" });
     const updatedData = { ...data, rol: "customer" };
     updateUserByAdmin.mutate({
       id: "632cb9030324508cdd5fd910",
