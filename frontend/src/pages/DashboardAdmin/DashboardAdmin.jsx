@@ -6,8 +6,12 @@ import Logo from "../../components/Logo/Logo";
 import DashboardH1 from "../../components/DashboardH1/DashboardH1";
 
 import { dataUsersCustomers, dataUsersEmployees } from "../../data";
+import { useEffect } from "react";
 
 const DashboardAdmin = () => {
+  useEffect(() => {
+    //get data
+  }, []);
   return (
     <DashboardBackground>
       <Logo />

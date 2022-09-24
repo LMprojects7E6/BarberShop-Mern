@@ -3,14 +3,7 @@ import ButtonForTable from "../Button/ButtonForTable";
 
 const AppointmentTable = ({ dataUsers }) => {
   //Data for creating thead of table
-  const tHead = [
-    "FIRST NAME",
-    "LAST NAME",
-    "EMAIL",
-    "PASSWORD",
-    "EDIT",
-    "DELETE",
-  ];
+  const tHead = ["FIRST NAME", "LAST NAME", "EMAIL", "PASSWORD", "", ""];
 
   const handleEdit = () => {
     console.log("EDIT");
@@ -40,12 +33,6 @@ const AppointmentTable = ({ dataUsers }) => {
             {dataUsers.map((user) => {
               const { _id, first_name, last_name, email, password, role } =
                 user;
-              console.log(user);
-              if (role === "employee") {
-                console.log("employee");
-              } else {
-                console.log("users");
-              }
               return (
                 <tr key={_id.$oid}>
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -74,7 +61,7 @@ const AppointmentTable = ({ dataUsers }) => {
                     <ButtonForTable onClick={handleEdit}>Edit</ButtonForTable>
                   </td>
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <ButtonForTable onClick={handleDelete}>Del</ButtonForTable>
+                    <ButtonForTable onClick={handleDelete}>X</ButtonForTable>
                   </td>
                 </tr>
               );
