@@ -18,10 +18,10 @@ const UserDelete = ({ user }) => {
   };
 
   return (
-    <>
-      <div>Are you sure you want to delete the user: {user.first_name}?</div>
+    <div className="self-center text-xl font-semibold whitespace-nowrap dark:text-black flex  space-x-10">
+      <span>Are you sure you want to delete {user.first_name}?</span>
       <DeleteButton onClick={() => removeUser.mutate(user._id)} />
-    </>
+    </div>
   );
 };
 

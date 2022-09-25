@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useState } from "react";
-import { getEmployees } from "../../../Api/users";
-import Table from "../../../components/table";
+import { getEmployees } from "../../../../Api/users";
+import Table from "../../../../components/table";
 
 const EmployeeTable = () => {
   const [employees, setEmployees] = useState([]);
