@@ -103,6 +103,9 @@ const Login = () => {
                     >
                       Create account
                     </button>
+                    <a className=" text-gray-500" href="#!">
+                      Forgot password?
+                    </a>
                   </div>
                 </div>
               </form>

@@ -1,0 +1,33 @@
+.background_style {
+  background: #232526; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #414345,
+    #232526
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.btn-style {
+  background: linear-gradient(to right, #000000, #434343);
+}
+
+.btn-style_newAccount {
+  background: linear-gradient(to right, #141e30, #243b55);
+}
+
+.div-style {
+  background-image: url("../../../src/assets/img/LoginAndRegister/img_login.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.img_logo {
+  height: 9rem;
+  width: 9rem;
+}

@@ -13,9 +13,12 @@ const getUsers = async (req, res) => {
   }
 
   try {
-    const user = await dbModel.User.find({
-      [queryToKey[key]]: value,
-    })
+    const user = await dbModel.User.find(
+      {
+        [queryToKey[key]]: value,
+      },
+      { password: 0 }
+    )
       .lean()
       .exec();
     res.status(200).send(user);
