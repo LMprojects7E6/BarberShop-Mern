@@ -5,7 +5,7 @@ import { getEmployees } from "../../../Api/users";
 import Table from "../../../components/Table/Table";
 
 const EmployeeTable = () => {
-  const [employees, setEmployees] = useState();
+  const [employees, setEmployees] = useState([]);
   const { isLoading, isError, data, error } = useQuery(
     ["getEmployees"],
     getEmployees,
@@ -21,9 +21,13 @@ const EmployeeTable = () => {
     return <div>{error.message}</div>;
   }
 
+  if (isLoading) {
+    return <div>is loading</div>;
+  }
+
   return (
     <>
-      <Table usersData={employees} updateUser={updateUserByAdmin}></Table>
+      <Table usersData={employees} isEmployee={true}></Table>
     </>
   );
 };

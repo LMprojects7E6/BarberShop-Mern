@@ -59,29 +59,9 @@ const DashboardAdmin = () => {
     },
   });
 
-  const updateUserByAdmin = useMutation(updateUser, {
-    onSuccess: (resp) => {
-      userUpdated(resp);
-    },
-    onError: (err) => {
-      toast.error(err.response.data.errorMsg);
-    },
-  });
-
-  const userUpdated = (data) => {
-    queryClient.invalidateQueries(["getCustomers", "getEmployees"]);
-    toast.success(data);
-  };
-
   const userCreated = (data) => {
     queryClient.invalidateQueries(["getCustomers", "getEmployees"]);
     toast.success(data);
-  };
-
-  const userDeleted = (data) => {
-    const userName = data.first_name;
-    queryClient.invalidateQueries(["getCustomers", "getEmployees"]);
-    toast.success(`${userName} has been deleted`);
   };
 
   const handleSubmit = (event) => {

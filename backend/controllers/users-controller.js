@@ -42,7 +42,7 @@ const deleteUser = async (req, res) => {
 //!Create User
 const createUser = async (req, res) => {
   const { first_name, last_name, email, password, role } = req.body;
-  console.log(req.body);
+
   //Encrypt data
   const hash = await bcrypt.hash(password, 10);
 
@@ -52,10 +52,10 @@ const createUser = async (req, res) => {
       last_name,
       email,
       password: hash,
-      role,
+      role: "employee",
     });
 
-    res.status(200).send("User created");
+    res.status(200).send(`${first_name} employee created`);
   } catch (error) {
     res.status(404).send({ message: error.message });
   }
@@ -78,14 +78,14 @@ const updateUser = async (req, res) => {
     return res.status(404).send("This email is already taken");
 
   const updatedUser = await dbModel.User.findByIdAndUpdate(
-    req.params.id,
+    req.query.id,
     req.body,
     {
       new: true,
     }
   );
 
-  res.status(200).send(updatedUser);
+  res.status(200).send(`${updatedUser.first_name} updated`);
 };
 
 //!Helper object to GET Users

@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { logIn } from "../../Api/session";
 import "./login.css";
@@ -94,18 +94,16 @@ const Login = () => {
                   </div>
                   <div className="flex items-center justify-between pb-6">
                     <p className="mb-0 mr-2">Don't have an account?</p>
-                    <button
-                      type="button"
-                      className="btn-style_newAccount inline-block px-6 py-2 border-2 border-black-600 text-white font-medium text-xs leading-tight uppercase rounded hover:bg-white hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-                      data-mdb-ripple="true"
-                      data-mdb-ripple-color="light"
-                      // onClick={() => register("/register", { replace: true })}
-                    >
-                      Create account
-                    </button>
-                    <a className=" text-gray-500" href="#!">
-                      Forgot password?
-                    </a>
+                    <Link to="/register">
+                      <button
+                        type="button"
+                        className="btn-style_newAccount inline-block px-6 py-2 border-2 border-black-600 text-white font-medium text-xs leading-tight uppercase rounded hover:bg-white hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                        data-mdb-ripple="true"
+                        data-mdb-ripple-color="light"
+                      >
+                        Create account
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </form>

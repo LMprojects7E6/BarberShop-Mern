@@ -1,20 +1,21 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
-import { updateUser } from "../../../Api/users";
+import { createUser } from "../../../Api/users";
 
-const UserUpdate = ({ user }) => {
+const UserCreate = () => {
   const queryClient = useQueryClient();
-  const updateUserByAdmin = useMutation(updateUser, {
+
+  const createUserByAdmin = useMutation(createUser, {
     onSuccess: (resp) => {
-      userUpdated(resp);
+      userCreated(resp);
     },
     onError: (err) => {
       toast.error(err.response.data.errorMsg);
     },
   });
 
-  const userUpdated = (data) => {
+  const userCreated = (data) => {
     queryClient.invalidateQueries(["getEmployees"]);
     toast.success(data);
   };
@@ -23,11 +24,7 @@ const UserUpdate = ({ user }) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    const updatedData = { ...data, rol: "customer" };
-    updateUserByAdmin.mutate({
-      id: user._id,
-      userData: updatedData,
-    });
+    createUserByAdmin.mutate(data);
   };
 
   return (
@@ -48,7 +45,6 @@ const UserUpdate = ({ user }) => {
                   className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="John"
                   name="first_name"
-                  defaultValue={user.first_name}
                 />
               </div>
             </div>
@@ -65,7 +61,6 @@ const UserUpdate = ({ user }) => {
                   className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="Smith"
                   name="last_name"
-                  defaultValue={user.last_name}
                 />
               </div>
             </div>
@@ -84,7 +79,6 @@ const UserUpdate = ({ user }) => {
                   className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="johnsmith@example.com"
                   name="email"
-                  defaultValue={user.email}
                 />
               </div>
             </div>
@@ -110,7 +104,7 @@ const UserUpdate = ({ user }) => {
           <div className="flex -mx-3">
             <div className="w-full px-3 mb-5">
               <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
-                UPDATE USER
+                CREATE EMPLOYEE
               </button>
             </div>
           </div>
@@ -120,4 +114,4 @@ const UserUpdate = ({ user }) => {
   );
 };
 
-export default UserUpdate;
+export default UserCreate;

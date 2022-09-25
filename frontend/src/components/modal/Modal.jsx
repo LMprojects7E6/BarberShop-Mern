@@ -1,13 +1,15 @@
 import { useState } from "react";
+import CreateButton from "../buttons/CreateButton";
 import DeleteButton from "../buttons/DeleteButton";
 import EditButton from "../buttons/EditButton";
 
-export default function Modal({ modalTitle, buttonType, children }) {
+export default function Modal({ modalTitle, buttonType, children, buttons }) {
   const [showModal, setShowModal] = useState(false);
 
   const propsToBtn = {
     edit: <EditButton onClick={() => setShowModal(true)} />,
     delete: <DeleteButton onClick={() => setShowModal(true)} />,
+    create: <CreateButton onClick={() => setShowModal(true)} />,
   };
   return (
     <>
@@ -42,13 +44,15 @@ export default function Modal({ modalTitle, buttonType, children }) {
                   >
                     Close
                   </button>
-                  <button
-                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => setShowModal(false)}
-                  >
-                    Save Changes
-                  </button>
+                  {buttons && (
+                    <button
+                      className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={() => setShowModal(false)}
+                    >
+                      Save Changes
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

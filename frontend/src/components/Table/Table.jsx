@@ -1,11 +1,10 @@
 import Modal from "../modal/Modal";
-import EditButton from "../buttons/EditButton";
+import UserUpdate from "../../pages/admin/components/UserUpdate";
+import UserDelete from "../../pages/admin/components/UserDelete";
 
-const Table = ({ dataUsers, isEmployee }) => {
-  console.log(isEmployee === "truee");
-
+const Table = ({ usersData, isEmployee }) => {
   //Data for creating thead of table
-  const tHead = ["FIRST NAME", "LAST NAME", "EMAIL", "PASSWORD", "", ""];
+  const tHead = ["FIRST NAME", "LAST NAME", "EMAIL", "", ""];
 
   return (
     <div className=" overflow-x-auto">
@@ -24,11 +23,10 @@ const Table = ({ dataUsers, isEmployee }) => {
             </tr>
           </thead>
           <tbody>
-            {dataUsers.map((user) => {
-              const { _id, first_name, last_name, email, password, role } =
-                user;
+            {usersData.map((user) => {
+              const { _id, first_name, last_name, email } = user;
               return (
-                <tr key={_id.$oid}>
+                <tr key={user._id}>
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <div className="flex items-center">
                       <div className="ml-3">
@@ -46,33 +44,21 @@ const Table = ({ dataUsers, isEmployee }) => {
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p className="text-gray-900 whitespace-no-wrap">{email}</p>
                   </td>
-                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p className="text-gray-900 whitespace-no-wrap">
-                      {password}
-                    </p>
-                  </td>
 
-                  <>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      {/* {isEmployee === "true" && ( */}
+                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    {isEmployee && (
                       <Modal
                         modalTitle={"EDIT EMPLOYEE DATA"}
                         buttonType={"edit"}
-                        button={EditButton}
                       >
-                        <div>EDIT MODAL</div>
+                        <UserUpdate user={user} />
                       </Modal>
-                      {/* )} */}
-                    </td>
-                  </>
+                    )}
+                  </td>
 
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <Modal
-                      modalTitle={"DELETE EMPLOYEE"}
-                      buttonType={"delete"}
-                      button={EditButton}
-                    >
-                      <div>Are you sure you want to delete this employee:</div>
+                    <Modal modalTitle={"DELETE EMPLOYEE"} buttonType={"delete"}>
+                      <UserDelete user={user} />
                     </Modal>
                   </td>
                 </tr>
