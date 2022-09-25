@@ -1,8 +1,9 @@
 import ButtonForTable from "../../../components/Button/ButtonForTable";
 
-const CustomerTable = () => {
+const CustomerTable = ({ dataUsers }) => {
+  console.log(dataUsers);
   //Data for creating thead of table
-  const tHead = ["FIRST NAME", "LAST NAME", "EMAIL", "PASSWORD", "", ""];
+  const tHead = ["ID", "FIRST NAME", "LAST NAME", "EMAIL", ""];
 
   const handleEdit = () => {
     console.log("EDIT");
@@ -31,18 +32,16 @@ const CustomerTable = () => {
             </thead>
             <tbody>
               {dataUsers.map((user) => {
-                const { _id, first_name, last_name, email, password, role } =
-                  user;
+                const { _id, first_name, last_name, email } = user;
                 return (
                   <tr key={_id.$oid}>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <div className="flex items-center">
-                        <div className="ml-3">
-                          <p className="text-gray-900 whitespace-no-wrap">
-                            {first_name}
-                          </p>
-                        </div>
-                      </div>
+                      <p className="text-gray-900 whitespace-no-wrap">{_id}</p>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <p className="text-gray-900 whitespace-no-wrap">
+                        {first_name}
+                      </p>
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <p className="text-gray-900 whitespace-no-wrap">
@@ -55,15 +54,7 @@ const CustomerTable = () => {
                       </p>
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">
-                        {password}
-                      </p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <ButtonForTable onClick={handleEdit}>Edit</ButtonForTable>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <ButtonForTable onClick={handleDelete}>X</ButtonForTable>
                     </td>
                   </tr>
                 );
