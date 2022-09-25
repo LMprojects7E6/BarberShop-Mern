@@ -1,5 +1,5 @@
 import Modal from "../modal/Modal";
-import EditButton from "../buttons /EditButton";
+import EditButton from "../buttons/EditButton";
 
 const Table = ({ dataUsers, isEmployee }) => {
   console.log(isEmployee === "truee");

@@ -1,4 +1,4 @@
-import ButtonForTable from "../../../components/Button/ButtonForTable";
+// import ButtonForTable from "../../../components/Button/ButtonForTable";
 const CustomerTable = ({ dataUsers }) => {
   console.log(dataUsers);
   //Data for creating thead of table
@@ -50,9 +50,9 @@ const CustomerTable = ({ dataUsers }) => {
                       </p>
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <ButtonForTable onClick={handleEdit}>
+                      {/* <ButtonForTable onClick={handleEdit}>
                         Appointment
-                      </ButtonForTable>
+                      </ButtonForTable> */}
                     </td>
                   </tr>
                 );
