@@ -1,10 +1,12 @@
-import React from 'react'
-import '../ButtonAppointment/ButtonAppointment.css'
+import React from "react";
+import "../ButtonAppointment/ButtonAppointment.css";
 
-const ButtonAppointment = () => {
+const ButtonAppointment = ({ onClick }) => {
   return (
-    <button className='btn-appointment'>MAKE IN APPOINTMENT</button>
-  )
-}
+    <button className="btn-appointment" onClick={onClick}>
+      MAKE IN APPOINTMENT
+    </button>
+  );
+};
 
-export default ButtonAppointment
+export default ButtonAppointment;

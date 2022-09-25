@@ -27,25 +27,36 @@ const updateAppointment = async (req, res) => {
 
 //!Create appointment
 const createAppointment = async (req, res) => {
-  const { employeeID, customerID, appointment } = req.body;
-  const { date } = appointment;
-  const formatDate = new Date(date);
-  appointment.date = formatDate;
-  //Create appointment
-  const appointmentBD = await dbModel.Appointment.create(appointment);
-  await appointmentBD.save();
-  //Create reference of appointment in employee
-  const employeeAppointment = await dbModel.User.findByIdAndUpdate(employeeID, {
-    $push: { appointments: appointmentBD.id },
-  });
-  await employeeAppointment.save();
-  //Create reference of appointment in customer
-  const customerAppointment = await dbModel.User.findByIdAndUpdate(customerID, {
-    $push: { appointments: appointmentBD.id },
-  });
-  await customerAppointment.save();
-
-  res.send("CREATED APPOINTMENT");
+  try {
+    const { employeeID, customerID = req.id, appointment } = req.body;
+    const { date } = appointment;
+    const formatDate = new Date(date);
+    appointment.date = formatDate;
+    //Create appointment
+    const appointmentBD = await dbModel.Appointment.create(appointment);
+    await appointmentBD.save();
+    //Create reference of appointment in employee
+    const employeeAppointment = await dbModel.User.findByIdAndUpdate(
+      employeeID,
+      {
+        $push: { appointments: appointmentBD.id },
+      }
+    );
+    await employeeAppointment.save();
+    //Create reference of appointment in customer
+    const customerAppointment = await dbModel.User.findByIdAndUpdate(
+      customerID,
+      {
+        $push: { appointments: appointmentBD.id },
+      }
+    );
+    await customerAppointment.save();
+    res.status(200).send({ message: `Appointment created at ${date}` });
+  } catch (error) {
+    res
+      .status(400)
+      .send({ errrorMsg: "Cannot create appointment", error: error });
+  }
 };
 
 //!Delete appointment
@@ -73,7 +84,9 @@ const deleteAppointment = async (req, res) => {
     });
     res.status(200).send("Appointment deleted successfully!");
   } catch (error) {
-    res.status(404).send({ message: error.message });
+    res
+      .status(404)
+      .send({ errorMsg: "Uuups!! something went wrong", error: error });
   }
 };
 

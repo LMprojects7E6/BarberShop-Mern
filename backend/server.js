@@ -52,8 +52,8 @@ app.get("/session", validateToken, (req, res, next) => {
 });
 
 //!ACCESS POINTS
-app.use("/users", usersRoutes);
-app.use("/appointments", appointmentRoutes);
+app.use("/users", validateToken, usersRoutes);
+app.use("/appointments", validateToken, appointmentRoutes);
 
 //!PORT TO LISTEN
 app.listen(process.env.PORT, () => {
