@@ -1,11 +1,16 @@
-// import ButtonForTable from "../../../components/Button/ButtonForTable";
+import ButtonAppointment from "../../../components/ButtonAppointment/ButtonAppointment";
+import React from "react";
+import { useState } from "react";
+import CustomerModal from "./CustomerModal";
 const CustomerTable = ({ dataUsers }) => {
-  console.log(dataUsers);
+  const [showModal, setShowModal] = useState(false);
+  const [employee, setEmployee] = useState({});
   //Data for creating thead of table
   const tHead = ["ID", "FIRST NAME", "LAST NAME", "EMAIL", ""];
 
-  const handleEdit = () => {
-    console.log("EDIT");
+  const handleClick = (employee) => {
+    setShowModal(true);
+    setEmployee(employee);
   };
 
   return (
@@ -50,9 +55,7 @@ const CustomerTable = ({ dataUsers }) => {
                       </p>
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      {/* <ButtonForTable onClick={handleEdit}>
-                        Appointment
-                      </ButtonForTable> */}
+                      <ButtonAppointment onClick={() => handleClick(user)} />
                     </td>
                   </tr>
                 );
@@ -61,6 +64,11 @@ const CustomerTable = ({ dataUsers }) => {
           </table>
         </div>
       </div>
+      <CustomerModal
+        setShowModal={setShowModal}
+        showModal={showModal}
+        employee={employee}
+      />
     </div>
   );
 };

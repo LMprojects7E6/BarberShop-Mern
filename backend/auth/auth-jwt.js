@@ -30,6 +30,7 @@ const validateToken = (req, res, next) => {
     if (validateToken) {
       //Get the role in JWT and add to the req
       req.role = validateToken.role;
+      req.id = validateToken.id;
       //Create a property to the request
       req.authenticated = true;
       //Continue with rest of the code after midleware aplies
