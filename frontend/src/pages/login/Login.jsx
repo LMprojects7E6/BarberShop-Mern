@@ -3,17 +3,26 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { logIn } from "../../Api/session";
 import "./login.css";
+import { SessionContext } from "../../context/SessionContext";
+import { useContext } from "react";
+
 const Login = () => {
+  const { setUserSession } = useContext(SessionContext);
   const navigate = useNavigate();
 
   const userLogIn = useMutation(logIn, {
     onSuccess: (res) => {
-      navigate("/dashboard");
+      loggedIn(res);
     },
     onError: (err) => {
       toast.error(err.response.data.errorMsg);
     },
   });
+
+  const loggedIn = (res) => {
+    setUserSession(res);
+    navigate("/dashboard");
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();

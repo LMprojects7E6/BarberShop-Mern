@@ -10,17 +10,15 @@ import Modal from "../../components/modal/Modal";
 
 const DashboardAdmin = () => {
   return (
-    <>
-      <div className="container m-auto px-4 sm:px-8">
-        <DashboardH1>EMPLOYEES</DashboardH1>
-        <EmployeeTable />
-        <Modal modalTitle={"CREATE A NEW EMPLOYEE"} buttonType={"create"}>
-          <UserCreate />
-        </Modal>
-        <DashboardH1>CUSTOMERS</DashboardH1>
-        <CustomerTable />
-      </div>
-    </>
+    <div className="container m-auto px-4 sm:px-8">
+      <DashboardH1>EMPLOYEES</DashboardH1>
+      <EmployeeTable />
+      <Modal modalTitle={"CREATE A NEW EMPLOYEE"} buttonType={"create"}>
+        <UserCreate />
+      </Modal>
+      <DashboardH1>CUSTOMERS</DashboardH1>
+      <CustomerTable />
+    </div>
   );
 };
 

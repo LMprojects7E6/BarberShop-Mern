@@ -1,26 +1,17 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React from "react";
-import { getEmployees } from "../../Api/users";
-import CustomerTable from "./customerTable";
+// import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+// import React from "react";
+// import { getEmployees } from "../../Api/users";
+import DashboardH1 from "../../components/dashboardH1/DashboardH1";
+// import Table from "../../components/table";
+import EmployeesTable from "./employeesTable";
 const DashboardCustomer = () => {
-  const {
-    isError,
-    isLoading,
-    data: employees,
-    error,
-  } = useQuery(["employees"], getEmployees);
-
-  if (isLoading) {
-    return <p>is loading...</p>;
-  } else if (isError) {
-    return <p>{error.message}</p>;
-  } else {
-    return (
-      <>
-        <CustomerTable dataUsers={employees} />
-      </>
-    );
-  }
+  return (
+    <div className="container m-auto px-4 sm:px-8">
+      <DashboardH1>EMPLOYEES</DashboardH1>
+      <EmployeesTable />
+      <DashboardH1>CUSTOMER APPOINTMENTS</DashboardH1>
+    </div>
+  );
 };
 
 export default DashboardCustomer;

@@ -10,8 +10,10 @@ import { getRoleByToken } from "../../Api/session";
 import DashboardCustomer from "../customer";
 import DashboardEmployee from "../employee";
 import DashboardAdmin from "../admin";
-
+import { SessionContext } from "../../context/SessionContext";
+import { useContext } from "react";
 const Layout = () => {
+  const { userSession } = useContext(SessionContext);
   const [role, setRol] = useState();
   const navigate = useNavigate();
 
@@ -27,9 +29,6 @@ const Layout = () => {
       },
     }
   );
-  console.log(data);
-
-  !isLoading && !isError && data === undefined && setRol(data);
 
   if (isLoading) {
     return (
@@ -44,7 +43,7 @@ const Layout = () => {
   }
   return (
     <DashboardBackground>
-      <Navbar dashboard={role.toUpperCase()} />
+      <Navbar dashboard={role?.toUpperCase()} />
       {chooseDashboard[role]}
       <Footer />
     </DashboardBackground>

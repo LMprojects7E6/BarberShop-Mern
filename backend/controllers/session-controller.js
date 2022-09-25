@@ -33,9 +33,10 @@ const loginController = async (req, res, next) => {
             //Expiration
             maxAge: 86400000,
           });
+
           //Send response
           //TODO role response?
-          return res.status(200).send({ userExists: true });
+          return res.status(200).send(user.first_name);
         }
       });
     } else {

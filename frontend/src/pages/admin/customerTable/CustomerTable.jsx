@@ -28,7 +28,7 @@ const CustomerTable = () => {
 
   return (
     <>
-      <Table usersData={customers} isEmployee={false}></Table>
+      <Table usersData={customers} isEmployee={false} isAdmin={true}></Table>
     </>
   );
 };

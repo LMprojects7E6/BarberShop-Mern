@@ -1,9 +1,10 @@
 import { useState } from "react";
+import AppointmentButton from "../buttons/AppointmentButton";
 import Button from "../buttons/Button";
 import DeleteButton from "../buttons/DeleteButton";
 import EditButton from "../buttons/EditButton";
 
-export default function Modal({ modalTitle, buttonType, children, buttons }) {
+export default function Modal({ modalTitle, buttonType, children }) {
   const [showModal, setShowModal] = useState(false);
 
   const propsToBtn = {
@@ -12,6 +13,7 @@ export default function Modal({ modalTitle, buttonType, children, buttons }) {
     create: (
       <Button onClick={() => setShowModal(true)} text={"CREATE EMPLOYEE"} />
     ),
+    createAppointment: <AppointmentButton onClick={() => setShowModal(true)} />,
   };
   return (
     <>

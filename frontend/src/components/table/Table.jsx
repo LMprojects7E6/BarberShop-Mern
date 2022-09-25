@@ -1,8 +1,9 @@
 import Modal from "../modal/Modal";
 import UserUpdate from "../../pages/admin/updateUser/UserUpdate";
 import UserDelete from "../../pages/admin/deleteUser";
+import AppointmentCreate from "../../pages/customer/createAppointment";
 
-const Table = ({ usersData, isEmployee }) => {
+const Table = ({ usersData, isEmployee, isAdmin, isCustomer }) => {
   //Data for creating thead of table
   const tHead = ["FIRST NAME", "LAST NAME", "EMAIL", "", ""];
 
@@ -44,7 +45,6 @@ const Table = ({ usersData, isEmployee }) => {
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <p className="text-gray-900 whitespace-no-wrap">{email}</p>
                   </td>
-
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     {isEmployee && (
                       <Modal
@@ -55,12 +55,23 @@ const Table = ({ usersData, isEmployee }) => {
                       </Modal>
                     )}
                   </td>
-
-                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <Modal modalTitle={"DELETE EMPLOYEE"} buttonType={"delete"}>
-                      <UserDelete user={user} />
-                    </Modal>
-                  </td>
+                  {isAdmin && (
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <Modal modalTitle={"DELETE USER"} buttonType={"delete"}>
+                        <UserDelete user={user} />
+                      </Modal>
+                    </td>
+                  )}
+                  {isCustomer && (
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <Modal
+                        modalTitle={"BOOK APPOINTMENT"}
+                        buttonType={"createAppointment"}
+                      >
+                        <AppointmentCreate employee={user} />
+                      </Modal>
+                    </td>
+                  )}
                 </tr>
               );
             })}
