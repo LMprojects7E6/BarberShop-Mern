@@ -20,13 +20,6 @@
   background: linear-gradient(to right, #141e30, #243b55);
 }
 
-.div-style {
-  background-image: url("../../../src/assets/img/LoginAndRegister/img_login.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
 .img_logo {
   height: 9rem;
   width: 9rem;

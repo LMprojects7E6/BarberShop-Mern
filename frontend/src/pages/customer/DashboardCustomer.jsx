@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { getEmployees } from "../../Api/users";
-import CustomerTable from "./components/CustomerTable";
+import CustomerTable from "./customerTable";
 const DashboardCustomer = () => {
   const {
     isError,
@@ -16,9 +16,9 @@ const DashboardCustomer = () => {
     return <p>{error.message}</p>;
   } else {
     return (
-      <div>
+      <>
         <CustomerTable dataUsers={employees} />
-      </div>
+      </>
     );
   }
 };

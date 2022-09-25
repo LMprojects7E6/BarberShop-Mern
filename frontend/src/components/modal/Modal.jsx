@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CreateButton from "../buttons/CreateButton";
+import Button from "../buttons/Button";
 import DeleteButton from "../buttons/DeleteButton";
 import EditButton from "../buttons/EditButton";
 
@@ -9,7 +9,9 @@ export default function Modal({ modalTitle, buttonType, children, buttons }) {
   const propsToBtn = {
     edit: <EditButton onClick={() => setShowModal(true)} />,
     delete: <DeleteButton onClick={() => setShowModal(true)} />,
-    create: <CreateButton onClick={() => setShowModal(true)} />,
+    create: (
+      <Button onClick={() => setShowModal(true)} text={"CREATE EMPLOYEE"} />
+    ),
   };
   return (
     <>
@@ -44,15 +46,6 @@ export default function Modal({ modalTitle, buttonType, children, buttons }) {
                   >
                     Close
                   </button>
-                  {buttons && (
-                    <button
-                      className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                      type="button"
-                      onClick={() => setShowModal(false)}
-                    >
-                      Save Changes
-                    </button>
-                  )}
                 </div>
               </div>
             </div>

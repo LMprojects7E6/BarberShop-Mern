@@ -1,6 +1,6 @@
 import Modal from "../modal/Modal";
-import UserUpdate from "../../pages/admin/components/UserUpdate";
-import UserDelete from "../../pages/admin/components/UserDelete";
+import UserUpdate from "../../pages/admin/updateUser/UserUpdate";
+import UserDelete from "../../pages/admin/deleteUser";
 
 const Table = ({ usersData, isEmployee }) => {
   //Data for creating thead of table
@@ -9,7 +9,7 @@ const Table = ({ usersData, isEmployee }) => {
   return (
     <div className=" overflow-x-auto">
       <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
-        <table className="min-w-full leading-normal">
+        <table className=" table-auto min-w-full leading-normal mb-10">
           <thead>
             <tr>
               {tHead.map((user, index) => (

@@ -108,9 +108,9 @@ const Login = () => {
                 </div>
               </form>
             </div>
-            <div className="hidden md:block w-1/2 h-80">
+            <div className="hidden md:block w-1/2 h-80 ">
               <img
-                src={require("../../assets/img/LoginAndRegister/img_login.jpg")}
+                src={require("../../assets/img/login_register/img_login.jpg")}
               />
             </div>
           </div>
