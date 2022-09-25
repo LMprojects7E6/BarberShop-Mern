@@ -48,7 +48,7 @@ const Login = () => {
                 <div>
                   <div className="flex -mx-3">
                     <div className="w-full px-3 mb-5">
-                      <label for="" className="text-s font-semibold px-1">
+                      <label htmlFor="" className="text-s font-semibold px-1">
                         Username
                       </label>
                       <div className="flex">
@@ -66,7 +66,7 @@ const Login = () => {
                   </div>
                   <div className="flex -mx-3">
                     <div className="w-full px-3 mb-5">
-                      <label for="" className="text-s font-semibold px-1">
+                      <label htmlFor="" className="text-s font-semibold px-1">
                         Password
                       </label>
                       <div className="flex">
