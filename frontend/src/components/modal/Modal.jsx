@@ -1,6 +1,6 @@
 import { useState } from "react";
-import DeleteButton from "../buttons /DeleteButton";
-import EditButton from "../buttons /EditButton";
+import DeleteButton from "../buttons/DeleteButton";
+import EditButton from "../buttons/EditButton";
 
 export default function Modal({ modalTitle, buttonType, children }) {
   const [showModal, setShowModal] = useState(false);
