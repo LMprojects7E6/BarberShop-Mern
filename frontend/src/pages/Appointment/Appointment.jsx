@@ -2,7 +2,7 @@ import React from 'react'
 import CalendarComponent from '../../components/CalendarComponent/CalendarComponent'
 import Logo from '../../components/Logo/Logo'
 import './Appointment.css'
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import ModalComplement from '../../components/ModalComplement/ModalComplement';
 
 
@@ -10,8 +10,8 @@ const Appointment = () => {
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <section className='style_appointment-bg'>
+      <Logo />
         <div className='style_center-title flex'>
-            <Logo/>
             <div className='style_appointment-title'>
                 <h1>APPOINTMENT</h1>
                 <div className='flex'>
@@ -25,7 +25,6 @@ const Appointment = () => {
             {/* test modal */}
             {/* end test modal */}
             </div>
-            <ModalComplement/>
         </section>
     </section>
   )

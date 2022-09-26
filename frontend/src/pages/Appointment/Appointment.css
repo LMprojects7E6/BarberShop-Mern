@@ -7,7 +7,7 @@
         background-position: center;
         background-size:cover;
         background-repeat: no-repeat;
-        opacity: 85%;
+        position: relative;
     }
 
 .style_bg-calendar{
@@ -18,8 +18,8 @@
 
 .style_appointment-title{
     display: flex;
-    position: absolute;
     width: 100%;
+    height: 14rem;
     flex-direction: column;
     align-items: center;
 }

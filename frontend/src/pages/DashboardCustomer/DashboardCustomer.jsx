@@ -59,9 +59,7 @@ const DashboardCustomer = () => {
       <Appointment/>
       <Footer />
       </section>
-      {/* <Calendar/>
-    <Testimonials />
-    <Footer/> */}
+      {/* <Testimonials />*/}
     </section>
   );
 };
