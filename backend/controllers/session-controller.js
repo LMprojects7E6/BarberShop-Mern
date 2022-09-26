@@ -23,7 +23,6 @@ const loginController = async (req, res, next) => {
           const accessToken = createToken(user);
           //Store JWT in coockies
           res.cookie("access-token", accessToken, {
-            //TODO: check secure depending on environment
             //Petition with http or https only
             secure: false,
             //Cannot get coockies from js script
@@ -35,8 +34,7 @@ const loginController = async (req, res, next) => {
           });
 
           //Send response
-          //TODO role response?
-          return res.status(200).send(user.first_name);
+          return res.status(200).send({ userRegistered: true });
         }
       });
     } else {
@@ -81,7 +79,6 @@ const registerController = async (req, res, next) => {
       const accesToken = createToken(user);
       //Store JWT in cookies
       res.cookie("access-token", accesToken, {
-        //TODO: check secure depending on environment
         //Petition with http or https only
         secure: false,
         //Cannot get coockies from js script
@@ -92,7 +89,6 @@ const registerController = async (req, res, next) => {
         maxAge: 86400000,
       });
       //Send response
-      //TODO role response?
       return res.status(200).send({ userRegistered: true });
     }
   } catch (error) {

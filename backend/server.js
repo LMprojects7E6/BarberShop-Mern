@@ -8,11 +8,6 @@ const cookieParser = require("cookie-parser");
 //!ADD ENVIRONMENT VARIABLES
 require("dotenv").config();
 
-//!ADD ROUTES
-// const sessionRoutes = require("./routes/session-routes");
-const usersRoutes = require("./routes/users-routes");
-const appointmentRoutes = require("./routes/appointment-routes");
-
 //!CONNECT TO SERVER MONGO
 const connect = require("./config/dbConfig");
 connect();
@@ -32,12 +27,12 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 const { validateToken } = require("./auth/auth-jwt");
 
-//!ROUTES
-
 //!REQUIRE ROUTES ROUTE
 const registerRoutes = require("./routes/register-routes");
 const loginRoutes = require("./routes/login-routes");
 const logoutRoutes = require("./routes/logout-routes");
+const usersRoutes = require("./routes/users-routes");
+const appointmentRoutes = require("./routes/appointment-routes");
 
 //!ROUTES
 app.use("/register", registerRoutes);
@@ -46,13 +41,11 @@ app.use("/login", loginRoutes);
 
 app.use("/logout", logoutRoutes);
 
-//!TODO:DELETE TEST AND PUT IT IN CORRESPONDENT FOLDER
 app.get("/session", validateToken, (req, res, next) => {
-  res.status(200).send({ role: req.role });
+  res.status(200).send({ role: req.role, first_name: req.first_name });
 });
-
-//!ACCESS POINTS
 app.use("/users", validateToken, usersRoutes);
+
 app.use("/appointments", validateToken, appointmentRoutes);
 
 //!PORT TO LISTEN

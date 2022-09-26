@@ -28,9 +28,10 @@ const validateToken = (req, res, next) => {
     //2.Check if the token didnt expired
     const validateToken = verify(accessToken, process.env.SECRET_KEY);
     if (validateToken) {
-      //Get the role in JWT and add to the req
+      //Get the values in JWT and add to the req
       req.role = validateToken.role;
       req.id = validateToken.id;
+      req.first_name = validateToken.first_name;
       //Create a property to the request
       req.authenticated = true;
       //Continue with rest of the code after midleware aplies
