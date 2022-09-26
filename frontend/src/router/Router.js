@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import ErrorPage from "../pages/error/ErrorPage";
 import Layout from "../pages/layout/Layout";
 import Login from "../pages/login";
-import Register from "../pages/register";
+import Register from "pages/register";
 
 const Router = () => {
   return (

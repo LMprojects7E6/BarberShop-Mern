@@ -1,7 +1,6 @@
 import React from "react";
 import Footer from "./footer";
 import Navbar from "./navbar";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getSession } from "../../Api/session";

@@ -3,7 +3,7 @@ import { useState, Children, cloneElement } from "react";
 import ButtonAppointment from "../buttons/AppointmentButton";
 import Button from "../buttons/Button";
 import DeleteButton from "../buttons/DeleteButton";
-import EditButton from "../buttons/EditButton";
+import EditButton from "components/buttons/EditButton";
 
 export default function Modal({ modalTitle, buttonType, children }) {
   const [showModal, setShowModal] = useState(false);
@@ -16,6 +16,7 @@ export default function Modal({ modalTitle, buttonType, children }) {
     ),
     createAppointment: <ButtonAppointment onClick={() => setShowModal(true)} />,
   };
+
   return (
     <>
       {propsToBtn[buttonType]}
