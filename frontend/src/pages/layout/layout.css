@@ -1,5 +1,5 @@
 .admin {
-  background-image: url("../../assets/img/backgrounds/barber_background2.svg");
+  background-image: url("../../assets/img/backgrounds/barber_background2.jpg");
   width: 100%;
   height: auto;
   background-position: center;
@@ -17,7 +17,7 @@
 }
 
 .customer {
-  background-image: url("../../assets/img/backgrounds/barber_background5.svg");
+  background-image: url("../../assets/img/backgrounds/barber_background5.jpg");
   width: 100%;
   height: auto;
   background-position: center;
