@@ -10,7 +10,7 @@ const DashboardCustomer = () => {
     <div className="container m-auto px-4 sm:px-8">
       <DashboardH1>EMPLOYEES</DashboardH1>
       <EmployeesTable />
-      <DashboardH1>CUSTOMER APPOINTMENTS</DashboardH1>
+      <DashboardH1>CUSTOMERS APPOINTMENTS</DashboardH1>
       <AppointmentsTable />
     </div>
   );

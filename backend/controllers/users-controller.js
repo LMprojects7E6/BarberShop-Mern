@@ -32,7 +32,6 @@ const deleteUser = async (req, res) => {
   const { id } = req.query;
   try {
     const customer = await dbModel.User.findOneAndDelete({ _id: id });
-    console.log(customer);
     res.status(200).send(customer);
   } catch (error) {
     res.status(404).send({ message: "user not found" });

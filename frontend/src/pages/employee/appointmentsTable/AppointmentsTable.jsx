@@ -16,10 +16,7 @@ const AppointmentsTable = () => {
   } else {
     return (
       <div className="container m-auto px-4 sm:px-8">
-        <TableAppointments
-          isCustomer={true}
-          appointmentsData={appointments}
-        ></TableAppointments>
+        <TableAppointments appointmentsData={appointments}></TableAppointments>
       </div>
     );
   }

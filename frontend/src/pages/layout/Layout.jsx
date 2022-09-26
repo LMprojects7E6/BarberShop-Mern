@@ -11,13 +11,14 @@ import DashboardEmployee from "../employee";
 import DashboardAdmin from "../admin";
 const Layout = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+
+  const storeSession = (resp) => {
+    localStorage.setItem("first_name", resp.first_name);
+    localStorage.setItem("role", resp.role);
+  };
+
   const { isLoading, data } = useQuery(["getSession"], getSession, {
-    onSuccess: (resp) => {
-      localStorage.setItem("first_name", resp.first_name);
-      localStorage.setItem("role", resp.role);
-      setUser(data);
-    },
+    onSuccess: storeSession,
     onError: () => {
       navigate("/login");
     },

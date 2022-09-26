@@ -5,7 +5,10 @@ import Modal from "../modal/Modal";
 
 const TableAppointments = ({ appointmentsData, isCustomer }) => {
   //Data for creating thead of table
-  const tHead = ["DATE", "TIME", "PRICE", "", ""];
+
+  const tHead = isCustomer
+    ? ["DATE", "TIME", "PRICE", "", ""]
+    : ["DATE", "TIME", "PRICE", ""];
   return (
     <div className=" overflow-x-auto">
       <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -27,7 +30,7 @@ const TableAppointments = ({ appointmentsData, isCustomer }) => {
               const { date, price } = appointment;
               const { date: dateAppointment, time } = dateFormat(date);
               return (
-                <tr>
+                <tr key={date}>
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <div className="flex items-center">
                       <div className="ml-3">

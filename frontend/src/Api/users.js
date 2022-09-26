@@ -12,7 +12,6 @@ export const getCustomers = async () => {
 
 export const createUser = async (formData) => {
   const response = await api.post(`/users`, formData);
-  console.log(response.data);
   return response.data;
 };
 
@@ -23,6 +22,5 @@ export const updateUser = async (data) => {
 
 export const deleteUser = async (id) => {
   const response = await api.delete(`/users?id=${id}`);
-  console.log(response.data);
   return response.data;
 };
