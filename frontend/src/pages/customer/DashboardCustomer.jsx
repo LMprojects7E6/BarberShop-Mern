@@ -2,6 +2,7 @@
 // import React from "react";
 // import { getEmployees } from "../../Api/users";
 import DashboardH1 from "../../components/dashboardH1/DashboardH1";
+import AppointmentsTable from "./appointmentsTable/AppointmentsTable";
 // import Table from "../../components/table";
 import EmployeesTable from "./employeesTable";
 const DashboardCustomer = () => {
@@ -10,6 +11,7 @@ const DashboardCustomer = () => {
       <DashboardH1>EMPLOYEES</DashboardH1>
       <EmployeesTable />
       <DashboardH1>CUSTOMER APPOINTMENTS</DashboardH1>
+      <AppointmentsTable />
     </div>
   );
 };

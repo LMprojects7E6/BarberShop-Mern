@@ -11,21 +11,17 @@ import DashboardEmployee from "../employee";
 import DashboardAdmin from "../admin";
 const Layout = () => {
   const navigate = useNavigate();
-
-  const { isLoading, isError, data, error } = useQuery(
-    ["getRole"],
-    getSession,
-    {
-      onSuccess: (resp) => {
-        localStorage.setItem("first_name", resp.first_name);
-        localStorage.setItem("role", resp.role);
-      },
-      onError: () => {
-        navigate("/login");
-      },
-    }
-  );
-
+  const [user, setUser] = useState(null);
+  const { isLoading, data } = useQuery(["getSession"], getSession, {
+    onSuccess: (resp) => {
+      localStorage.setItem("first_name", resp.first_name);
+      localStorage.setItem("role", resp.role);
+      setUser(data);
+    },
+    onError: () => {
+      navigate("/login");
+    },
+  });
   if (isLoading) {
     return (
       <div className="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 flex items-center flex-col">
@@ -33,13 +29,11 @@ const Layout = () => {
         <p className="text-3xl mt-10">Is loading...</p>
       </div>
     );
-  } else if (isError) {
-    navigate("/login");
-  } else {
+  } else if (user) {
     return (
       <DashboardBackground>
-        <Navbar dashboard={data.role.toUpperCase()} />
-        {chooseDashboard[data.role]}
+        <Navbar dashboard={user.role?.toUpperCase()} />
+        {chooseDashboard[user.role]}
         <Footer />
       </DashboardBackground>
     );

@@ -1,7 +1,7 @@
 import api from "./api";
 
-export const getAppointmentsByUserId = async (id) => {
-  const response = await api.get(`/appointments/${id}`);
+export const getAppointmentsByUserId = async () => {
+  const response = await api.get(`/appointments`);
   return response.data;
 };
 export const createAppointment = async (formData) => {

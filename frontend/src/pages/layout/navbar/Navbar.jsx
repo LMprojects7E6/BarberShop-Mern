@@ -20,8 +20,7 @@ const Navbar = ({ dashboard }) => {
           <ul className="flex flex-wrap items-center mt-3 text-lg whitespace-nowrap dark:text-black font-extrabold sm:mt-0">
             <li>
               <span className="mr-4  md:mr-6">
-                WELCOME BACK{" "}
-                {localStorage.getItem("first_name").toLocaleUpperCase()}
+                WELCOME BACK {localStorage.getItem("first_name")?.toUpperCase()}
               </span>
             </li>
             <li>

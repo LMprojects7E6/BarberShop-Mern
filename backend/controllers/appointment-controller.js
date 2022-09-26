@@ -3,14 +3,13 @@ const dbModel = require("../models");
 
 //!Get appointment
 const getAllAppointmentsByUserId = async (req, res) => {
-  const { id } = req.params;
-
+  const id = req.id;
   try {
-    const appointmentList = await dbModel.User.find({ _id: id }).populate(
+    const appointmentList = await dbModel.User.findById(id).populate(
       "appointments"
     );
-
-    res.status(200).send(appointmentList);
+    const { appointments } = appointmentList;
+    res.status(200).send(appointments);
   } catch (error) {
     res.status(404).send({ message: error.message });
   }
@@ -29,11 +28,13 @@ const updateAppointment = async (req, res) => {
 const createAppointment = async (req, res) => {
   try {
     const { employeeID, customerID = req.id, appointment } = req.body;
-    const { date } = appointment;
-    const formatDate = new Date(date);
-    appointment.date = formatDate;
+    const { date, price } = appointment;
+
     //Create appointment
-    const appointmentBD = await dbModel.Appointment.create(appointment);
+    const appointmentBD = await dbModel.Appointment.create({
+      price: price,
+      date: new Date(date),
+    });
     await appointmentBD.save();
     //Create reference of appointment in employee
     const employeeAppointment = await dbModel.User.findByIdAndUpdate(
