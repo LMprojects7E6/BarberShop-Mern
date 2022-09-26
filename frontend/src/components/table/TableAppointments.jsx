@@ -1,7 +1,9 @@
 import React from "react";
+import DeleteAppointment from "../../pages/customer/deleteAppointment/DeleteAppointment";
 import dateFormat from "../../utils/dateFormat";
+import Modal from "../modal/Modal";
 
-const TableAppointments = () => {
+const TableAppointments = ({ appointmentsData, isCustomer }) => {
   //Data for creating thead of table
   const tHead = ["DATE", "TIME", "PRICE", "", ""];
   return (
@@ -23,14 +25,14 @@ const TableAppointments = () => {
           <tbody>
             {appointmentsData.map((appointment) => {
               const { date, price } = appointment;
-              const { date: dateFormat, time } = dateFormat(date);
+              const { date: dateAppointment, time } = dateFormat(date);
               return (
                 <tr>
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <div className="flex items-center">
                       <div className="ml-3">
                         <p className="text-gray-900 whitespace-no-wrap">
-                          {dateFormat}
+                          {dateAppointment}
                         </p>
                       </div>
                     </div>
@@ -39,32 +41,18 @@ const TableAppointments = () => {
                     <p className="text-gray-900 whitespace-no-wrap">{time}</p>
                   </td>
                   <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    <p className="text-gray-900 whitespace-no-wrap">{price}</p>
+                    <p className="text-gray-900 whitespace-no-wrap">
+                      {price} €
+                    </p>
                   </td>
-                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                    {isEmployee && (
-                      <Modal
-                        modalTitle={"EDIT EMPLOYEE DATA"}
-                        buttonType={"edit"}
-                      >
-                        <UserUpdate user={user} />
-                      </Modal>
-                    )}
-                  </td>
-                  {isAdmin && (
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <Modal modalTitle={"DELETE USER"} buttonType={"delete"}>
-                        <UserDelete user={user} />
-                      </Modal>
-                    </td>
-                  )}
+                  <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm"></td>
                   {isCustomer && (
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <Modal
-                        modalTitle={"BOOK APPOINTMENT"}
-                        buttonType={"createAppointment"}
+                        modalTitle={"DELETE APPOINTMENT"}
+                        buttonType={"delete"}
                       >
-                        <AppointmentCreate employee={user} />
+                        <DeleteAppointment />
                       </Modal>
                     </td>
                   )}
