@@ -33,7 +33,9 @@ const Layout = () => {
     );
   }
   return (
-    <div className={`${data.role} flex flex-col h-screen justify-between`}>
+    <div
+      className={`${data.role} background flex flex-col h-screen justify-between`}
+    >
       <Navbar dashboard={data.role?.toUpperCase()} />
       {chooseDashboard[data.role]}
       <Footer />
