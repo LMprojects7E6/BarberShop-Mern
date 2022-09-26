@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAppointmentsByUserId } from "../../../Api/appointment";
 import toast from "react-hot-toast";
 import dateFormat from "../../../utils/dateFormat";
+import TableAppointments from "../../../components/table/TableAppointments";
 const AppointmentsTable = () => {
   const {
     isLoading,
@@ -15,15 +16,11 @@ const AppointmentsTable = () => {
     toast.error(error);
   } else {
     return (
-      <div>
-        {appointments.map((appointment) => {
-          const { date, time } = dateFormat(appointment.date);
-          return (
-            <li>
-              {date} - {time}
-            </li>
-          );
-        })}
+      <div className="container m-auto px-4 sm:px-8">
+        <TableAppointments
+          isCustomer={true}
+          appointmentsData={appointments}
+        ></TableAppointments>
       </div>
     );
   }

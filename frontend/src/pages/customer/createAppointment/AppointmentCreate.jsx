@@ -13,19 +13,14 @@ const AppointmentCreate = ({ employee }) => {
   //create mutation
   const addAppointmentMutation = useMutation(createAppointment, {
     onSuccess: (res) => {
-      appointmentCreated(res);
+      queryClient.invalidateQueries(["appointments"]);
+      toast.success(res.message, { style: { maxWidth: "100%" } });
       setShowModal(false);
     },
     onError: (error) => {
       toast.error(error.response.data.errrorMsg);
     },
   });
-
-  const appointmentCreated = (res) => {
-    queryClient.invalidateQueries(["appointments"]);
-    // queryClient.invalidateQueries(["employees"]);
-    toast.success(res.message, { style: { maxWidth: "100%" } });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

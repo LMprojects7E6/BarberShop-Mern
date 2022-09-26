@@ -16,13 +16,13 @@ const getAllAppointmentsByUserId = async (req, res) => {
 };
 
 //!Update Users appointment array
-const updateAppointment = async (req, res) => {
-  const { id, appointments } = req.body;
+// const updateAppointment = async (req, res) => {
+//   const { id, appointments } = req.body;
 
-  try {
-    const updateUser = dbModel.User.findOneAndUpdate({ _id: id });
-  } catch (error) {}
-};
+//   try {
+//     const updateUser = dbModel.User.findOneAndUpdate({ _id: id });
+//   } catch (error) {}
+// };
 
 //!Create appointment
 const createAppointment = async (req, res) => {
@@ -94,6 +94,5 @@ const deleteAppointment = async (req, res) => {
 module.exports = {
   getAllAppointmentsByUserId: getAllAppointmentsByUserId,
   createAppointment: createAppointment,
-  updateAppointment: updateAppointment,
   deleteAppointment: deleteAppointment,
 };
