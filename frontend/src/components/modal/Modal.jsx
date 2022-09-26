@@ -1,12 +1,13 @@
+import { useContext } from "react";
 import { useState } from "react";
+import { ContextGeneralModal } from "../../context/GeneralModalProvider";
 import ButtonAppointment from "../buttons/AppointmentButton";
 import Button from "../buttons/Button";
 import DeleteButton from "../buttons/DeleteButton";
 import EditButton from "../buttons/EditButton";
 
 export default function Modal({ modalTitle, buttonType, children }) {
-  const [showModal, setShowModal] = useState(false);
-
+  const { showModal, setShowModal } = useContext(ContextGeneralModal);
   const propsToBtn = {
     edit: <EditButton onClick={() => setShowModal(true)} />,
     delete: <DeleteButton onClick={() => setShowModal(true)} />,

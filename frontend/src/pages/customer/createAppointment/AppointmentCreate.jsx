@@ -1,16 +1,19 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
+import { useContext } from "react";
 import toast from "react-hot-toast";
-
 import { createAppointment } from "../../../Api/appointment";
+import { ContextGeneralModal } from "../../../context/GeneralModalProvider";
 
 const AppointmentCreate = ({ employee }) => {
   const queryClient = useQueryClient();
+  const { setShowModal } = useContext(ContextGeneralModal);
 
   //create mutation
   const addAppointmentMutation = useMutation(createAppointment, {
     onSuccess: (res) => {
       appointmentCreated(res);
+      setShowModal(false);
     },
     onError: (error) => {
       toast.error(error.errorMsg);
