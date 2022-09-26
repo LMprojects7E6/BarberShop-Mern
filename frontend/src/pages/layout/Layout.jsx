@@ -2,27 +2,23 @@ import React from "react";
 import DashboardBackground from "./dashboardBackground";
 import Footer from "./footer";
 import Navbar from "./navbar";
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getRoleByToken } from "../../Api/session";
+import { getSession } from "../../Api/session";
 import DashboardCustomer from "../customer";
 import DashboardEmployee from "../employee";
 import DashboardAdmin from "../admin";
-import { SessionContext } from "../../context/SessionContext";
-import { useContext } from "react";
 const Layout = () => {
-  const { userSession } = useContext(SessionContext);
-  const [role, setRol] = useState();
   const navigate = useNavigate();
 
   const { isLoading, isError, data, error } = useQuery(
     ["getRole"],
-    getRoleByToken,
+    getSession,
     {
       onSuccess: (resp) => {
-        setRol(resp.role);
+        localStorage.setItem("first_name", resp.first_name);
+        localStorage.setItem("role", resp.role);
       },
       onError: () => {
         navigate("/login");
@@ -43,8 +39,8 @@ const Layout = () => {
   }
   return (
     <DashboardBackground>
-      <Navbar dashboard={role?.toUpperCase()} />
-      {chooseDashboard[role]}
+      <Navbar dashboard={data.role.toUpperCase()} />
+      {chooseDashboard[data.role]}
       <Footer />
     </DashboardBackground>
   );

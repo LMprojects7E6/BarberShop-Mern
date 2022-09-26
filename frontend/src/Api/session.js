@@ -10,7 +10,7 @@ export const logIn = async (formData) => {
   return response.data;
 };
 
-export const getRoleByToken = async () => {
+export const getSession = async () => {
   const response = await api.get("/session");
   return response.data;
 };

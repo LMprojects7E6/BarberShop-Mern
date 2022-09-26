@@ -1,14 +1,9 @@
 import React from "react";
-import Button from "../../../components/buttons/Button";
 import Logo from "../../../components/logo/Logo";
-import { SessionContext } from "../../../context/SessionContext";
-import { useContext } from "react";
-
+import Logout from "../logout/Logout";
 const Navbar = ({ dashboard }) => {
-  const { userSession } = useContext(SessionContext);
-
   return (
-    <nav className="bg-transparent border-gray-200 px-2 sm:px-4 py-2.5">
+    <nav className=" border-gray-200 px-2 sm:px-4 py-0.5 bg-white opacity-90 mb-10">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <div className="flex items-center">
           <Logo />
@@ -25,11 +20,12 @@ const Navbar = ({ dashboard }) => {
           <ul className="flex flex-wrap items-center mt-3 text-lg whitespace-nowrap dark:text-black font-extrabold sm:mt-0">
             <li>
               <span className="mr-4  md:mr-6">
-                WELCOME BACK {userSession?.toUpperCase()}
+                WELCOME BACK{" "}
+                {localStorage.getItem("first_name").toLocaleUpperCase()}
               </span>
             </li>
             <li>
-              <Button text={"LOG OUT"} />
+              <Logout />
             </li>
           </ul>
         </div>
