@@ -1,24 +1,25 @@
 import React from "react";
 import "../DashboardCustomer/DashboardCustomer.css";
-import Calendar from "../../components/Calendar/Calendar";
+import Calendar from "../../components/CalendarComponent/CalendarComponent";
 import Footer from "../../components/Footer/Footer";
 import Testimonials from "../../components/Testimonials/Testimonials";
 import Navbar from "../../components/Navbar/Navbar";
 import Logo from "../../components/Logo/Logo";
 import ButtonLogin from "../../components/ButtonLogin/ButtonLogin";
 import ButtonAppointment from "../../components/ButtonAppointment/ButtonAppointment";
-import OurBarber from "./Components/OurBarber/OurBarber";
-import Appointment from "./Components/Appointment/Appointment";
+import OurBarber from "../OurBarber/OurBarber";
+import Appointment from "../Appointment/Appointment";
+import ModalComplement from "../../components/ModalComplement/ModalComplement";
 
 const DashboardCustomer = () => {
   return (
-    <>
-      <div className="style_Background-Home flex">
+    <section>
+      <section className="style_Background-Home flex">
         <Logo />
         <ButtonLogin />
         <Navbar />
-      </div>
-      <div className="style_title-home">
+      </section>
+      <section className="style_title-home">
         <div className="style_h1-home">
           <h1>BARBERSHOP</h1>
         </div>
@@ -52,16 +53,16 @@ const DashboardCustomer = () => {
             <p> SUNDAY 11 AM - 7PM</p>
           </div>
         </div>
-      </div>
+      </section>
+      <section>
       <OurBarber />
       <Appointment/>
-      <div>
       <Footer />
-      </div>
+      </section>
       {/* <Calendar/>
     <Testimonials />
     <Footer/> */}
-    </>
+    </section>
   );
 };
 

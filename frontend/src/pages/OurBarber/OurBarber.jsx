@@ -1,7 +1,7 @@
 import React from "react";
-import ButtonAppointment from "../../../../components/ButtonAppointment/ButtonAppointment";
-import Logo from "../../../../components/Logo/Logo";
-import "../OurBarber/OurBarber.css";
+import ButtonAppointment from "../../components/ButtonAppointment/ButtonAppointment";
+import Logo from "../../components/Logo/Logo";
+import "./OurBarber.css";
 
 const OurBarber = () => {
   return (

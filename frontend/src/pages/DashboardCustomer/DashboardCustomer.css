@@ -6,6 +6,14 @@
     box-sizing: border-box;
 }
 
+
+
+.container{
+    scroll-snap-type: y mandatory;
+    overflow-x: scroll;
+
+}
+
 .style_Background-Home{
     background-image: url('../../assets/img/BackGrounds/barber_background2.jpg');
     width: 100%;

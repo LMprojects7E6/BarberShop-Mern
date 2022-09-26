@@ -5,7 +5,7 @@ import '../Navbar/Navbar.css'
 
 const Navbar = () => {
   return (
-<nav className="style__navBar px-2 md:px-4 py-2.5 flex">
+<section className="style__navBar px-2 md:px-4 py-2.5 flex">
     <div className="flex flex-wrap justify-between  mx-auto max-w-screen-xl text-center">
         <div id="mega-menu-icons" className="style_Text-navBar hidden justify-between items-center w-full md:flex md:w-auto md:order-1">
             <ul className="flex flex-col mt-4 text-xl font-large md:flex-row md:space-x-8 md:mt-0">
@@ -28,7 +28,7 @@ const Navbar = () => {
             </ul>
         </div>
     </div>
-</nav>
+</section>
 
 
   )

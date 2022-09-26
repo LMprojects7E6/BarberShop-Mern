@@ -3,7 +3,7 @@ import "../ButtonLogin/ButtonLogin.css";
 
 const ButtonLogin = () => {
   return (
-    <div className="flex items-center md:order-2">
+    <section className="flex items-center md:order-2">
       <a
         href="#!"
         className="text-gray-800 bg-gray-800 dark:text-white font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
@@ -16,7 +16,7 @@ const ButtonLogin = () => {
       >
         Sign up
       </a>
-    </div>
+    </section>
   );
 };
 

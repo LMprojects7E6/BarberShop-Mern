@@ -1,4 +1,4 @@
-@import url('../../../../assets/fonts/fonts.css');
+@import url('../../assets/fonts/fonts.css');
 
 .style_ourbarber-bg{
     /* background-color: #3A3838; */
@@ -35,7 +35,7 @@
     align-items: center;
     width: 100%;
     align-items: center;
-    position: absolute;
+    /* position: absolute; */
 }
 
 .style_ourbarber-p{

@@ -1,16 +1,25 @@
 import React from 'react'
-import '../Calendar/Calendar.css'
+import './Calendar.css'
 
-const Calendar = () => {
+const CalendarComponent = () => {
+
+  const date = new Date();
+  const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
+  const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSeconds()];
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  let monthName = months[date.getMonth()];
+  // console.log(monthName)
+
+
+
+
   return (
-    <div className="background_calendar container p-10 ">
-      <div className='text-white text-center text-5xl mb-3'>
-        <h1>MAKE AN APPOINTMENT</h1>
-      </div>
+
+    <section className="background_calendar container p-10 ">
     <div className="wrapper bg-white rounded shadow w-full ">
       <div className="header flex justify-between border-b p-2">
         <span className="text-lg font-bold">
-          2020 July
+          {year} {monthName}
         </span>
         <div className="buttons">
           <button className="p-1">
@@ -69,28 +78,6 @@ const Calendar = () => {
                 <div className="top h-5 w-full">
                   <span className="text-gray-500">1</span>
                 </div>
-                <div className="bottom flex-grow h-30 py-1 w-full cursor-pointer">
-                  <div
-                    className="event bg-purple-400 text-white rounded p-1 text-sm mb-1"
-                  >
-                    <span className="event-name">
-                      Meeting
-                    </span>
-                    <span className="time">
-                      12:00~14:00
-                    </span>
-                  </div>
-                  <div
-                    className="event bg-purple-400 text-white rounded p-1 text-sm mb-1"
-                  >
-                    <span className="event-name">
-                      Meeting
-                    </span>
-                    <span className="time">
-                      18:00~20:00
-                    </span>
-                  </div>
-                </div>
               </div>
             </td>
             <td className="border p-1 h-40 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300">
@@ -129,18 +116,6 @@ const Calendar = () => {
               <div className="flex flex-col h-40 mx-auto xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 overflow-hidden">
                 <div className="top h-5 w-full">
                   <span className="text-gray-500">7</span>
-                </div>
-                <div className="bottom flex-grow h-30 py-1 w-full cursor-pointer">
-                  <div
-                    className="event bg-blue-400 text-white rounded p-1 text-sm mb-1"
-                  >
-                    <span className="event-name">
-                      Shopping
-                    </span>
-                    <span className="time">
-                      12:00~14:00
-                    </span>
-                  </div>
                 </div>
               </div>
             </td>
@@ -389,8 +364,8 @@ const Calendar = () => {
         </tbody>
       </table>
     </div>
-  </div>
+  </section>
   )
 }
 
-export default Calendar
+export default CalendarComponent;

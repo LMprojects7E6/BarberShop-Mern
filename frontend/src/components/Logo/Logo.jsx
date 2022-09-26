@@ -3,11 +3,11 @@ import '../Logo/Logo.css'
 
 const Logo = () => {
   return (
-    <div className='flex'>
+    <section className='flex'>
         <a href="/" className="backGround_logo flex">
             <img src={require("../../assets/img/img_logo.png")} className="style_img-logo" alt="Flowbite Logo" />
         </a>
-    </div>
+    </section>
   )
 }
 

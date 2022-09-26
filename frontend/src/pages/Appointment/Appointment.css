@@ -1,7 +1,7 @@
-@import url('../../../../assets/fonts/fonts.css');
+@import url('../../assets/fonts/fonts.css');
 
 .style_appointment-bg{
-        background-image: url('../../../../assets/img/BackGrounds/barber_background.jpg');
+        background-image: url('../../assets/img/BackGrounds/barber_background.jpg');
         width: 100%;
         height: 100vh;
         background-position: center;
@@ -48,3 +48,4 @@
     text-align: center;
     color: #BEBEBE;
 }
+
