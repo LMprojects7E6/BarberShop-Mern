@@ -8,10 +8,10 @@ const Navbar = ({ dashboard }) => {
         <div className="flex items-center">
           <Logo />
           <div className="flex flex-col">
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-black">
               BARBER SHOP
             </span>
-            <span className="self-center text-lg  whitespace-nowrap dark:text-white">
+            <span className="self-center text-lg  whitespace-nowrap dark:text-black">
               {dashboard} DASHBOARD
             </span>
           </div>

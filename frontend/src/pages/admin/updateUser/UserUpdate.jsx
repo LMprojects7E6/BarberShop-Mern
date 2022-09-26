@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import React from "react";
 import toast from "react-hot-toast";
 import { updateUser } from "../../../Api/users";
 
-const UserUpdate = ({ user }) => {
+const UserUpdate = ({ user, setShowModal }) => {
   const queryClient = useQueryClient();
+
   const updateUserByAdmin = useMutation(updateUser, {
     onSuccess: (resp) => {
       userUpdated(resp);
@@ -16,6 +16,7 @@ const UserUpdate = ({ user }) => {
 
   const userUpdated = (data) => {
     queryClient.invalidateQueries(["getEmployees"]);
+    setShowModal(false);
     toast.success(data);
   };
 

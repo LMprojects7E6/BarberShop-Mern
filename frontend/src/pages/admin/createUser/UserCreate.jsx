@@ -1,11 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import React from "react";
 import toast from "react-hot-toast";
 import { createUser } from "../../../Api/users";
 
-const UserCreate = () => {
+const UserCreate = ({ setShowModal }) => {
   const queryClient = useQueryClient();
-
   const createUserByAdmin = useMutation(createUser, {
     onSuccess: (resp) => {
       userCreated(resp);
@@ -17,6 +15,7 @@ const UserCreate = () => {
 
   const userCreated = (data) => {
     queryClient.invalidateQueries(["getEmployees"]);
+    setShowModal(false);
     toast.success(data);
   };
 

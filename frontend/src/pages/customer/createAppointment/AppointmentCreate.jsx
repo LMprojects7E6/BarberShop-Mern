@@ -1,20 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import React from "react";
-import { useContext } from "react";
 import toast from "react-hot-toast";
 import { createAppointment } from "../../../Api/appointment";
 import Button from "../../../components/buttons/Button";
-import { ContextGeneralModal } from "../../../context/GeneralModalProvider";
 
-const AppointmentCreate = ({ employee }) => {
+const AppointmentCreate = ({ employee, setShowModal }) => {
   const queryClient = useQueryClient();
-  const { setShowModal } = useContext(ContextGeneralModal);
 
   //create mutation
   const addAppointmentMutation = useMutation(createAppointment, {
     onSuccess: (res) => {
       appointmentCreated(res);
-      setShowModal(false);
     },
     onError: (error) => {
       toast.error(error.response.data.errrorMsg);
@@ -23,7 +18,7 @@ const AppointmentCreate = ({ employee }) => {
 
   const appointmentCreated = (res) => {
     queryClient.invalidateQueries(["appointments"]);
-    // queryClient.invalidateQueries(["employees"]);
+    setShowModal(false);
     toast.success(res.message, { style: { maxWidth: "100%" } });
   };
 

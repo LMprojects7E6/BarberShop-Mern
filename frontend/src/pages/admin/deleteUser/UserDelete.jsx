@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import React from "react";
 import toast from "react-hot-toast";
 import { deleteUser } from "../../../Api/users";
-import DeleteButton from "../../../components/buttons/DeleteButton";
+import Button from "../../../components/buttons/Button";
 
-const UserDelete = ({ user }) => {
+const UserDelete = ({ user, setShowModal }) => {
   const queryClient = useQueryClient();
+
   const removeUser = useMutation(deleteUser, {
     onSuccess: (resp) => userDeleted(resp),
   });
@@ -14,13 +14,18 @@ const UserDelete = ({ user }) => {
     const userName = data.first_name;
     queryClient.invalidateQueries(["getCustomers"]);
     queryClient.invalidateQueries(["getEmployees"]);
+    setShowModal(false);
     toast.success(`${userName} has been deleted`);
   };
 
   return (
-    <div className="self-center text-xl font-semibold whitespace-nowrap dark:text-black flex  space-x-10">
-      <span>Are you sure you want to delete {user.first_name}?</span>
-      <DeleteButton onClick={() => removeUser.mutate(user._id)} />
+    <div className="flex flex-col text-center">
+      <h2 className="text-2xl mb-3">
+        Are you sure you want to delete {user.first_name}?{" "}
+      </h2>
+      <div className="text-center mt-5">
+        <Button onClick={() => removeUser.mutate(user._id)} text={"DELETE"} />
+      </div>
     </div>
   );
 };

@@ -1,13 +1,13 @@
-import { useContext } from "react";
-import { useState } from "react";
-import { ContextGeneralModal } from "../../context/GeneralModalProvider";
+import { useState, Children, cloneElement } from "react";
+
 import ButtonAppointment from "../buttons/AppointmentButton";
 import Button from "../buttons/Button";
 import DeleteButton from "../buttons/DeleteButton";
 import EditButton from "../buttons/EditButton";
 
 export default function Modal({ modalTitle, buttonType, children }) {
-  const { showModal, setShowModal } = useContext(ContextGeneralModal);
+  const [showModal, setShowModal] = useState(false);
+
   const propsToBtn = {
     edit: <EditButton onClick={() => setShowModal(true)} />,
     delete: <DeleteButton onClick={() => setShowModal(true)} />,
@@ -39,7 +39,11 @@ export default function Modal({ modalTitle, buttonType, children }) {
                 </div>
                 {/*body*/}
 
-                <div className="relative p-6 flex-auto">{children}</div>
+                <div className="relative p-6 flex-auto">
+                  {Children.map(children, (child) =>
+                    cloneElement(child, { setShowModal })
+                  )}
+                </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
