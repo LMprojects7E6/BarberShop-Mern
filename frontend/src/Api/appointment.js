@@ -14,7 +14,7 @@ export const createAppointment = async (formData) => {
 //   return response.data;
 // };
 
-export const deleteAppointment = async (id) => {
-  const response = await api.post(`/appointments/${id}`);
+export const deleteAppointment = async () => {
+  const response = await api.post(`/appointments/`);
   return response.data;
 };

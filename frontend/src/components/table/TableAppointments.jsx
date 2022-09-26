@@ -55,7 +55,7 @@ const TableAppointments = ({ appointmentsData, isCustomer }) => {
                         modalTitle={"DELETE APPOINTMENT"}
                         buttonType={"delete"}
                       >
-                        <DeleteAppointment />
+                        <DeleteAppointment  appointment={appointment}/>
                       </Modal>
                     </td>
                   )}
