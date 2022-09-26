@@ -62,32 +62,33 @@ const createAppointment = async (req, res) => {
 
 //!Delete appointment
 const deleteAppointment = async (req, res) => {
-  const { employeeID, customerID, appointmentID } = req.body;
-
   try {
-    //Delete reference of appointment in employee
-    const employeeAppointment = await dbModel.User.findByIdAndUpdate(
-      employeeID,
-      {
-        $pull: { appointments: appointmentID },
-      }
-    );
-    //Delete reference of appointment in customer
-    const customerAppointment = await dbModel.User.findByIdAndUpdate(
-      customerID,
-      {
-        $pull: { appointments: appointmentID },
-      }
-    );
-    //Delete the appointment
-    const appointment = await dbModel.Appointment.findOneAndDelete({
-      _id: appointmentID,
+    // const { employeeID, customerID, appointmentID } = req.body;
+    const { appointmentID } = req.body;
+    //Find all users with appointment ID in "appointments" ref
+    const users = await dbModel.User.find({
+      appointments: { $elemMatch: { $eq: appointmentID } },
     });
-    res.status(200).send("Appointment deleted successfully!");
+    //Get the ids of "users" with appointments to delete
+    //Delete "appointment objectID" elem inside array "appointments"
+    users.forEach(async (user) => {
+      return await dbModel.User.updateOne(
+        { _id: user._id },
+        {
+          $pull: {
+            appointments: appointmentID,
+          },
+        }
+      );
+    });
+    //Delete appointment doc
+    const appointment = await dbModel.Appointment.findByIdAndDelete(
+      appointmentID
+    );
+    res.send(appointment);
+    // res.send(users);
   } catch (error) {
-    res
-      .status(404)
-      .send({ errorMsg: "Uuups!! something went wrong", error: error });
+    res.send(error);
   }
 };
 
