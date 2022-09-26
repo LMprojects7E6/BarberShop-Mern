@@ -40,8 +40,11 @@ const deleteUser = async (req, res) => {
 
 //!Create User
 const createUser = async (req, res) => {
-  const { first_name, last_name, email, password, role } = req.body;
+  const { first_name, last_name, email, password } = req.body;
 
+  if (password.length < 5) {
+    return res.status(400).send({ errorMsg: "Password is to short" });
+  }
   //Encrypt data
   const hash = await bcrypt.hash(password, 10);
 
@@ -54,7 +57,7 @@ const createUser = async (req, res) => {
       role: "employee",
     });
 
-    res.status(200).send(`${first_name} employee created`);
+    res.status(200).send(`New employee ${first_name}  created`);
   } catch (error) {
     res.status(404).send({ message: error.message });
   }
@@ -64,11 +67,15 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   const user = await dbModel.User.findById(req.query.id);
   const userByEmail = await dbModel.User.findOne({ email: req.body.email });
+
+  if (!user) return res.status(404).send("No user with that id");
+
+  if (user.password.length < 5) {
+    return res.status(400).send({ errorMsg: "Password is to short" });
+  }
   //Encrypt data
   const hash = await bcrypt.hash(req.body.password, 10);
   req.body.password = hash;
-
-  if (!user) return res.status(404).send("No user with that id");
 
   if (
     userByEmail !== null &&
@@ -84,7 +91,7 @@ const updateUser = async (req, res) => {
     }
   );
 
-  res.status(200).send(`${updatedUser.first_name} updated`);
+  res.status(200).send(`Employee ${updatedUser.first_name} updated`);
 };
 
 //!Helper object to GET Users

@@ -56,7 +56,7 @@ const createAppointment = async (req, res) => {
   } catch (error) {
     res
       .status(400)
-      .send({ errrorMsg: "Cannot create appointment", error: error });
+      .send({ errorMsg: "Cannot create appointment", error: error });
   }
 };
 

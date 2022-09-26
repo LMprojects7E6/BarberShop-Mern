@@ -10,7 +10,7 @@ const createToken = (user) => {
       role: user.role,
     },
     process.env.SECRET_KEY,
-    { expiresIn: "80m" }
+    { expiresIn: "10s" }
   );
   return accessToken;
 };
