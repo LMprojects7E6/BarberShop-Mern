@@ -33,17 +33,17 @@ const Layout = () => {
         <p className="text-3xl mt-10">Is loading...</p>
       </div>
     );
-  }
-  if (isError) {
+  } else if (isError) {
     navigate("/login");
+  } else {
+    return (
+      <DashboardBackground>
+        <Navbar dashboard={data.role.toUpperCase()} />
+        {chooseDashboard[data.role]}
+        <Footer />
+      </DashboardBackground>
+    );
   }
-  return (
-    <DashboardBackground>
-      <Navbar dashboard={data.role.toUpperCase()} />
-      {chooseDashboard[data.role]}
-      <Footer />
-    </DashboardBackground>
-  );
 };
 
 const chooseDashboard = {
