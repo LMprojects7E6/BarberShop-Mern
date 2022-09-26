@@ -1,5 +1,4 @@
 import React from "react";
-import DashboardBackground from "./dashboardBackground";
 import Footer from "./footer";
 import Navbar from "./navbar";
 import { useState } from "react";
@@ -9,6 +8,7 @@ import { getSession } from "../../Api/session";
 import DashboardCustomer from "../customer";
 import DashboardEmployee from "../employee";
 import DashboardAdmin from "../admin";
+import "./layout.css";
 const Layout = () => {
   const navigate = useNavigate();
 
@@ -33,11 +33,11 @@ const Layout = () => {
     );
   }
   return (
-    <DashboardBackground>
+    <div className={`${data.role} flex flex-col h-screen justify-between`}>
       <Navbar dashboard={data.role?.toUpperCase()} />
       {chooseDashboard[data.role]}
       <Footer />
-    </DashboardBackground>
+    </div>
   );
 };
 

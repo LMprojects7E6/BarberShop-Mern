@@ -1,0 +1,26 @@
+.admin {
+  background-image: url("../../assets/img/backgrounds/barber_background2.svg");
+  width: 100%;
+  height: auto;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.employee {
+  background-image: url("../../assets/img/backgrounds/barber_background.jpg");
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.customer {
+  background-image: url("../../assets/img/backgrounds/barber_background5.svg");
+  width: 100%;
+  height: auto;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
