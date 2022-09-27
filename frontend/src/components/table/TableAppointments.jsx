@@ -2,7 +2,7 @@ import React from "react";
 import DeleteAppointment from "../../pages/customer/deleteAppointment/DeleteAppointment";
 import dateFormat from "../../utils/dateFormat";
 import Modal from "../modal/Modal";
-
+import "./Table.css";
 const TableAppointments = ({ appointmentsData, isCustomer }) => {
   //Data for creating thead of table
 
@@ -10,7 +10,7 @@ const TableAppointments = ({ appointmentsData, isCustomer }) => {
     ? ["DATE", "TIME", "PRICE", "", ""]
     : ["DATE", "TIME", "PRICE", ""];
   return (
-    <div className=" overflow-x-auto">
+    <div className=" overflow-x-auto table-data">
       <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
         <table className=" table-auto min-w-full leading-normal mb-10">
           <thead>
