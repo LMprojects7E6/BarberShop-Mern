@@ -3,6 +3,7 @@
   <h1>BarberShop-Mern</h1>
 
 <br />
+</div>
 
 <!-- Table of Contents -->
 
