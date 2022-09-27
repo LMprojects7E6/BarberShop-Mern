@@ -27,7 +27,7 @@ const TableAppointments = ({ appointmentsData, isCustomer }) => {
           </thead>
           <tbody>
             {appointmentsData.map((appointment) => {
-              const { date, price } = appointment;
+              const { date, price, _id } = appointment;
               const { date: dateAppointment, time } = dateFormat(date);
               return (
                 <tr key={date}>
@@ -55,7 +55,7 @@ const TableAppointments = ({ appointmentsData, isCustomer }) => {
                         modalTitle={"DELETE APPOINTMENT"}
                         buttonType={"delete"}
                       >
-                        <DeleteAppointment />
+                        <DeleteAppointment appointmentID={_id} />
                       </Modal>
                     </td>
                   )}

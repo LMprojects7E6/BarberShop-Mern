@@ -64,7 +64,7 @@ const createAppointment = async (req, res) => {
 const deleteAppointment = async (req, res) => {
   try {
     // const { employeeID, customerID, appointmentID } = req.body;
-    const { appointmentID } = req.body;
+    const { appointmentID } = req.params;
     //Find all users with appointment ID in "appointments" ref
     const users = await dbModel.User.find({
       appointments: { $elemMatch: { $eq: appointmentID } },
@@ -85,10 +85,10 @@ const deleteAppointment = async (req, res) => {
     const appointment = await dbModel.Appointment.findByIdAndDelete(
       appointmentID
     );
-    res.send(appointment);
+    res.status(200).send("Appointment deleted!!");
     // res.send(users);
   } catch (error) {
-    res.send(error);
+    res.status(400).send({ errorMsg: "Cannot delete appointment", error });
   }
 };
 

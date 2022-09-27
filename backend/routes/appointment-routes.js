@@ -6,6 +6,6 @@ const appointmentController = require("../controllers/appointment-controller");
 //!CRUD
 router.get("/", appointmentController.getAllAppointmentsByUserId);
 router.post("/", appointmentController.createAppointment);
-router.delete("/", appointmentController.deleteAppointment);
+router.delete("/:appointmentID", appointmentController.deleteAppointment);
 
 module.exports = router;
