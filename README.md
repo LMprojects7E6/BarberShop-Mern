@@ -22,7 +22,7 @@
 <!-- About the Project -->
 
 ## :star2: About the Project
-
+This is un application for booking and scheduling system for barbershops. Let your customers schedule appointments with your team online at any time. Don't get double booked. 
 <!-- Screenshots -->
 
 ### :camera: Screenshots
