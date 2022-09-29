@@ -27,7 +27,7 @@ This is un application for booking and scheduling system for barbershops. Let yo
 
 ### :camera: Screenshots
 
-<div align="center"> 
+<div align="center" width="50%"> 
   <img src="https://github.com/LMprojects7E6/barber-shop-mern/blob/main/frontend/src/assets/readme/screenshot.PNG" alt="screenshot" />
 </div>
 
@@ -41,6 +41,7 @@ This is un application for booking and scheduling system for barbershops. Let yo
     <li><a href="https://reactjs.org/">React.js</a></li>
     <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
     <li><a href="https://tanstack.com/query/v4/">React Query</a></li>
+    <li><a href="https://github.com/axios/axios">Axios</a></li>
   </ul>
 </details>
 
