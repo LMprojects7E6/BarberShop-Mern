@@ -28,7 +28,7 @@ This is un application for booking and scheduling system for barbershops. Let yo
 ### :camera: Screenshots
 
 <div align="center"> 
-  <img src="frontend/src/assets/screenshot.PNG" alt="screenshot" />
+  <img src="https://github.com/LMprojects7E6/barber-shop-mern/blob/main/frontend/src/assets/readme/screenshot.PNG" alt="screenshot" />
 </div>
 
 <!-- TechStack -->
